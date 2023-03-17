@@ -1,0 +1,211 @@
+								DATE : 01/11/14
+
+	>>> a= 'abc'
+	>>> str(len(a))
+	
+	>>> b='xy\nyx'
+	>>> print b
+	xy
+	yx
+	>>>len(c)
+	>>>5
+	
+	>>>len('xy\nxy')
+	>>>5
+	>>>len(r'xy\nxy')		#{r means raw i.e it will take the whole line as it is}
+	>>>6
+
+	>>>v1 = 'A' * 200
+	>>>print v1
+	#{it will print A 200 times}
+	
+* A method is like a function,but it runs "on" an object.
+* If the variable 's' is a string,then the code s.lower() runs the lower() method on that string object and returns the result.
+* All of these methods return new objects, rather than modifying the orignal object.
+
+	>>>s.lower(), s.upper()
+	   * Returns the lowercase or uppercase version of the string.
+
+	>>>a.strip()
+	   * Returns a string with whitecase removed from the start and end.
+	>>> lstrip and rstrip - refer
+
+	>>>b=' Hello World '
+	>>>print b
+	  Hello World
+	>>>b.strip()
+	' Hello World '
+
+	>>>b.lstrip()
+	'Hello World '
+	>>>b.rstrip()
+	' Hello World'
+
+
+	>>>s.isalpha()
+	* Checks whether the string consists of a alphabetic chars only.
+
+	>>>a = 'Python'
+	>>>a.isaplha()
+	True
+	>>>b='Welcome to the world'
+	>>>b.isaplha()
+	False
+
+	>>>s.isdigit()
+	* Checks whether the string consists of digits only
+	>>>c = '8'
+	>>>c.isdigit()
+	True
+	>>>d = 8
+	Error
+	>>>e='0x10'
+	>>>e.isdigit()
+	False
+
+
+
+	>>>s.ispace()
+	* Checks whether the string consists of whitespace i.e only a space
+	>>>a='Hello DITISS'
+	>>>a.isspace()
+	False
+	>>>g=' '
+	True 
+
+	>>>s.startswith('other') | s.endswith('other')
+	* Test if the string starts or ends with the given other string.
+
+	>>>a = 'Hello Pune'
+	>>>a.startswith('Hello')
+	True
+	>>>a.startswith('Hello Pune')
+	True
+	>>>a.startswith('a')
+	True
+
+	>>>a = 'Hello Pune'
+	>>>a.endswith('Pune')
+	True
+	>>>a.endswith('e')
+	True
+	>>>a.endswith('a')
+	True
+	>>>a.endswith('pune')
+	False
+
+	>>>s.find('other')
+	* Search for the given other string with s, and returns other
+	
+	>>>s.replace('old', 'new')
+	* Returns a string where all occurences of "old" have been replaced by "new"
+
+	>>>i= 'DITISS rocks'
+	>>>i.replace('DITISS', 'Pune')
+	'Pune Rocks'
+	>>> print i
+	DITISS Rocks
+
+	>>>s.split('delim')
+	* Returns a list of substrings separated by th given delimeter.
+	* s.split with no arguments splits on all whitespace chars.
+	>>>a='aaa.bbb.ccc'
+	>>>a.split('.')
+	['aaa', 'bbb', 'ccc']
+
+	>>>a='AAAAA'
+	>>>a.split('A')
+	['','','','','','']
+	>>>b='HelloWorld'
+	>>>b.split()
+	[''HelloWorld]
+	>>>a='abc'
+
+
+
+	>>>a.centre(width,[fillchar])
+	* The method centre() returns centered in a string of length width. Padding is done using the specified fillchar.
+
+	>>>a.centre(3,'-')
+	'abc'
+	>>>a.centre(4,'-')
+	'abc-'
+	>>>a.centre(6,'-')
+	'-abc--'
+	>>>a.centre(7,'-')
+	'--abc--'
+	>>>a.centre(9)
+	'   abc   '     #{total 9 characters}
+	>>>a='BA'
+	>>>a.centre(7, 'A')
+	'AAABAAA'
+
+	>>>a='hello world'
+	>>>a.title()
+	'Hello World'
+
+	>>>a= 'Hello'
+	>>>a[0]
+	'H'
+	>>>a[1]
+	'e'
+
+		*String Slicing*
+	>>>a[0:3]
+	'Hel'
+	>>>a[2:4]
+	'll'
+	>>>a[2:]
+	'llo'
+	>>>a[:100]
+	'Hello'
+	
+
+	>>>a='abcdefghijklmnopqrstuvwxyz'
+	>>>len(a)
+	26
+	>>>a[0:26]
+	'abcdefghijklmnopqrstuvwxyz'
+	>>>a[0:25]
+	'abcdefghijklmnopqrstuvwxy'
+	>>>a[0:26:2]
+	'acegikmoqsuwy'
+	>>>a[0:26:3]
+	'adgjmpsvy'
+	>>>a[0:1:26]
+	'abcdefghijklmnopqrstuvwxyz'
+	>>>a[:]
+	'abcdefghijklmnopqrstuvwxyz'
+
+	>>>a='Hello'
+	>>>a[-1]
+	'0'
+	>>>a[-2]
+	'l'
+	>>>a[-4]
+	e
+	
+	>>* Negative numbers for indexing
+	>>* Powerful feature
+	>>* Example - Want to omit the last three characters of a string and you do not know/remember the length of the string.
+
+	>>>a[:-3]
+	'He'
+	>>>a[-3:]
+	'llo'
+
+	* For any index n, s[:n] + s[n:] == s
+
+	>>> a[:2] + a[2:]
+	'Hello'
+
+
+	>>* String Placeholder
+	>>* Similar to printf()
+	>>* The % operator takes a printf-type format string on the left(%d=int, %s=string %f or %g for floating point), and the matching values in a tuple on the right.
+
+	>>> 'Hi %s, I have %d Apple' %('Tinku',100)
+	'Hi Tinku, I have 100 Apple'
+
+	>>>"Hack %(domain)s server having the IP %(ip)s" %{"domain": "matriux.com", "ip": "192.168.100.200"}
+	'Hack matriux.com server having the IP 192.168.100.200'

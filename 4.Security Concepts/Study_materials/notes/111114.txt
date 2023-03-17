@@ -1,0 +1,349 @@
+
+					DATE : 11/11/14
+
+
+	> yum install php openssl community-mysql community-mysql-server php-mysql 	p7zip php-mbstring.
+	> which php
+	> cd /var/www/html/site1 
+	> nano one.php
+
+	* making a page in php (4 checking php is properly configured or not) :
+		
+		<html>
+		<head>
+		</head>
+		<body>
+		<?php
+		phpinfo();
+		?>		
+		</body>
+		</html>
+
+	> systemctl start httpd.service
+
+	
+
+	* php program :
+		<?php
+		echo 'Hello World';
+		?>
+
+
+
+
+
+	HTTP 
+	> Client Server Model
+	> Client - Request resources from the server
+	> Server - Provides		
+	> Request / Response [Request-Reply] model.
+	> Resources are identified by URI/URL
+
+		** Assignment - Understand what is URI, URL and URN
+
+
+	HTTP 1.0
+	> Require one connection per resource
+	> Disconnect immediately.
+
+	HTTP 1.1
+	> Reuse the connection for multiple URI
+
+
+	 HTTP Response Code
+	> 1XX = Information
+	> 2XX = Success
+	> 3XX = Redirection
+	> 4XX = Client Error
+	> 5XX = Server Error
+
+
+	HTTP Methods (For Requesting)
+	> 1.0
+		> GET
+		> POST
+		> HEAD
+	> 1.1
+		> OPTIONS
+		> TRACE
+		> PUT
+		> DELETE
+
+ 
+		** Default method is GET.
+
+
+	> cat file1.html
+		<html>
+		<head><title>WAS GET-FORM></title>
+		</head>
+		<body>
+		<form action=get1.php method=get>
+		First Name:<input type='text' name=fname><br>		
+		Last Name:<input type='text' name=lname><br>
+		<input type=submit value=submit><br>
+		</from>
+		</body>
+		</html>
+
+
+	cat get1.php
+		
+		<?php
+		echo $_GET('fname');
+		echo <br>
+		echo $_GET('lname');
+		?>
+
+
+	> cat file1Php.html
+		<html>
+		<head><title>WAS GET-FORM></title>
+		</head>
+		<body>
+		<form action=get1.php method=post>
+		First Name:<input type='text' name=fname><br>		
+		Last Name:<input type='text' name=lname><br>
+		<input type=submit value=submit><br>
+		</from>
+		</body>
+		</html>
+
+
+	cat php1.php
+		
+		<?php
+		echo $_POST('fname');
+		echo '<br>';
+		echo $_POST('lname');
+		?>
+
+
+	curl --> Used in NDS as a command line browser
+		> curl -v http://........(the url)  {it by default opens through GET}
+		> curl -v -X POST http://........(the url)
+		> curl -v -X GET http://........(the url)
+
+
+
+
+	** HTTP provides 2 Authentication :
+		> Basic
+		> Digest
+
+
+
+
+
+	index.php
+		<form action='login.php' method = 'POST'>
+		username: <input type='text' name='username'><br><br>
+		password: <input type='text' name='password'><br><br>
+		<input type='submit' value='Submit' name='Submit button'>
+		</form>	
+
+
+
+ 	> yum install community-mysql community-mysql-server community-mysql-devel
+
+	> systemctl start mysqld.service
+	>  mysql -u root -p
+	mysql> CREATE DATABASE IF NOT EXISTS db1;
+	mysql> use db1
+	mysql> CREATE TABLE users (
+ 			       --> id int(10) NOT NULL AUTO_INCREAMENT,
+ 			       --> username varchar(30) NOT NULL,
+ 			       --> password varchar(32) NOT NULL,
+ 			       --> PRIMARY KEY (id),
+ 			       --> UNIQUE (username)
+ 			       --> );
+
+	mysql> desc USERS
+	mysql> INSERT INTO users (id, username, password) VALUES (2, 'Pinky', 'Pblablabla');
+	mysql> select * from users {to show all details of the table}
+
+
+	login.php
+		<?php
+		session_start();
+		if(!empty($_POST('username')&& !empty($_POST('password')))
+		{
+		echo 'Yoy are a good boy!!!';
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		echo '<br>;'
+		echo $username;
+		echo '<br>;'
+		echo $password;
+		echo '<br>;'
+		include 'dbconnect.php';
+		$query = "SELECT * FROM users WHERE username= '$username' AND password='$password'";
+		$query_run = mysql_query($query);
+		$rows_returned = mysql_num_rows($query_run);
+		echo $rows_returned;
+		if($rows_returned>=1)
+		{
+		echo '<br>Login Success<br>';
+		echo "You are in! <a href = 'member.php'> Member Page</a>";
+		$_SESSION['username'] = $username;
+		}
+		else
+		{
+		echo '<br>Invalid username password<br>';
+		echo "<a href =index.php'>Go Back</a>";
+		}
+		}
+		else
+		{
+		echo 'Please Enter username password';
+		echo '<br>';
+		echo "<a href =index.php'>Go Back</a>";
+		}
+		?>
+
+
+
+				** wherever we use session,we should call session start() just below <?php **
+
+
+	dbconnect.php
+	<?php
+		mysql_connect('localhost','root', ' ');
+		mysql_select_db('db1');
+	?>
+
+
+
+	member.php
+	<?php
+		session_start();
+		if(isset($_SESSION['username']))
+		{
+		 echo "Welcome, ".$SESSION['username'];
+		 echo "<br><br>";
+		 echo "<a href =logout.php'>Go Back</a>";
+		}
+		else
+		{
+		 echo 'Unauthorized User!!!!!;
+		 echo 'You must be logged in.'
+		}
+	?>
+
+
+	logout.php
+	
+	<?php
+		session_start();
+		session_destroy();
+		 echo 'You have successfully logged out .<a href =index.php'>Click here</a> '
+		}
+	?>
+
+
+
+
+
+
+sqlinjection : SELECT * FROM users WHERE username=" OR "=" AND password=" OR "="
+
+
+`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+
+	2DES (Double DES):
+		> Not sure than DES due to internal vulnerabilities
+		> Key Length = 112 bits
+
+	3DES:
+		> Provides 48 rounds in computation.
+		>Heavy performance hit.
+
+	3DES Modes:
+		> DES-EEE3 (Triple encription using three keys)
+		> DES-EDE3
+		> DES-EEE2
+		> DES-EDE2
+
+
+	AES: 
+		
+		> Key Length = 128,192,or 256 bits
+		> Block size 128 bits
+		> the number of rounds depends upon sixe of the key
+			> 10 cycles of repetition for 128 bit keys
+			> 12 cycles of repetition for 192 bit keys
+			> 14 cycles of repetition for 256 bit keys
+
+
+	IDEA:
+		> Block cipher
+		> Operates on 64-bit data 
+		> The 64 bit data block is divided into 16 smaller blocks and each has eight rounds of mathamatical functions performed on it
+		> Key size = 128 bits
+		> IDEA is used in the pgp and other encrytion software implementations.
+
+
+
+	BLOWFISH:
+		> Block cipher
+		> Operates on 64-bit data 
+		> Key length - betwwen 32 bits upto 448 bits.
+		> Data block go through 16 rounds of cryptographic functions.
+
+	RC4:
+		> Most commonly implemented stream cipher
+		> Variable key size
+		> Used in SSL
+
+	RC5:
+		> Block cipher
+		> Block Size used- 32,64, or 128 bits
+		> Key size goes upto 2048 bits.
+		> Number of rounds can go upto 255
+		> RC6 is built upon RC5. same parameters as RC5, but with increased speed.
+
+	
+	Cryptography Notation:
+		> Configuration of the algorithm is generally represented as:
+			* rc5-w/r/b or C5-32/12/16
+		> w = Word size, in bits, which can be 16,32, or 64 bits length.
+		> r = Number of rounds, which can be 0 to 255
+		> So RC-32/12/16 would mean:
+			> 32 bit words, which mean it encrypts 64-bits block,
+			> Using 12 rounds,
+			> With a 16 byte (128-bits) key
+
+
+
+	Diffie-Hellman:
+		> Used for key exchange.
+		> Vulnareable.
+		> Use for Digital signature and digital sertificates for more security.
+
+	RSA:
+		> Can be used for Digital signature, key exchange and encryption.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

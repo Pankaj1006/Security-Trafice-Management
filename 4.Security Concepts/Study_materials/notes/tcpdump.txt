@@ -1,0 +1,14 @@
+			** TCPDUMP commands **
+
+ > tcpdump -i eth0 -n port 80 'tcp[13]=2'       ---> for capturing syn flag
+			      'tcp[13]=1'	---> for capturing fin flag
+			      'tcp[13]=16'      ---> for capturing ack flag
+			      'tcp[13]=18'      ---> for capturing syn+ack flag
+
+> tcpdump -i eth0 -s1 -c1 port 22
+> tcpdump -i eth0 host 192.168.73.250 -xxe and 'tcp[13]=2' or 'tcp[13]=8'
+> tcpdump -i eth0 host 192.168.73.250 -xxe and 'tcp[13]&2=2'
+
+
+
+>> nping --tcp -p 80 192.168.73.250 --flags syn -c 1	 	{for generating custom syn packet}

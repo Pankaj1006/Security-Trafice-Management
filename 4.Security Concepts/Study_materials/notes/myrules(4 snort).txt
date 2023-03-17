@@ -1,0 +1,27 @@
+#command to run on command line: 
+> snort -i 3 -l C:\Snort\log -c C:\Snort\etc\snort.conf -A console
+
+#command to run on command line:
+>snort -i 3 -l C:\Snort\log -c C:\Snort\etc\snort.conf -K ascii/pcap 
+
+#capture packet being sent :
+>alert tcp any any -> 192.168.73.202 80 (msg:"Password Capture"; flow to_server,established; content:"POST"; sid: 888888888;
+
+>alert tcp any 23 -> any any (msg: "telnet connection established"; content:"Telnet Server"; session:printable; fragbits:D;  sid: 999999999;)
+
+>alert tcp any 23 -> any any (msg: "telnet connection terminated"; flags:FA; session:printable; sid: 999999991;)
+
+>alert tcp any any -> any 80 (msg:"CHROME DETECTED"; content:"GET"; nocase; http_method; content: "Chrome"; nocase;  sid: 999999992;)
+
+>alert tcp any any -> any 21 (msg:"FTP RETR Command"; content:"RETR"; nocase; sid:777777771;)
+>alert tcp any any -> any 21 (msg:"FTP PUT Command"; content:"STOR"; nocase; sid:777777772;)
+
+>alert tcp any 21 -> any any (msg:"FTP Failed Attempt"; content:"530"; nocase; sid:777777773;)
+
+>alert tcp any 21 -> any any (msg:"FTP Successful Attempt"; content:"230"; nocase; sid:777777774;)
+
+>alert tcp any 80 -> any any (msg:"IIS Packet"; content:"HTTP"; nocase;  content: "Server"; nocase; sid:777777775;)
+
+>alert tcp any any -> any 88(msg:"Kerberos as requested packet"; content:"|0c|";)
+
+>alert tcp any any -> any any(msg:"XMAS Scan Detected"; flags:FPU; sid:466666666;)

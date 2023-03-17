@@ -1,0 +1,300 @@
+					DATE : 05/11/14
+
+	*Tuple : whenever u need constant size value,we used tuple.
+		> Fixed size grouping of elements.
+		> Example - X, Y co-ordinates.
+		> Tuples are like list,except they are immutable and do not change size.
+		> Similar to "struct".
+
+	>>> a=(1,2,3)
+	>>> print a
+	(1,2,3)
+	>>> print type(a)
+	<type 'tuple'>
+	
+	>>> b=list(a)
+	>>> print b
+	[1,2,3]
+	>>> print type (b)
+	<type 'list'>
+
+	>>> c= tuple(b)
+	>>> print c
+	(1,2,3)
+	>>> print type(c)
+	<type 'tuple'>
+
+	>>>a=()
+	>>>print a
+	()
+	>>>print len(a)
+	0
+	>>>print type(a)
+	<type 'tuple'>
+	>>>b=(1,2,3)
+	>>>b[0]
+	1
+	>>>b[0]=100
+	ERROR
+
+	>>>a=('a')
+	>>>print a
+	a
+	>>>print type(a)
+	<type 'str'>
+	>>>a=(a)
+	>>>print type(a)
+	<type 'int'>
+
+	>>>a=('a',)
+	>>>print a
+	('a',)
+	>>>print type(a)
+	<type 'tuple'>
+
+	>>>b='b',
+	>>>print b
+	('b',)
+	>>>print type(b)
+	<type 'tuple'>
+
+	>>>* Sequence Unpacking
+
+	>>>socket1=('192.168.10.20', 80, 'tcp')
+	>>> print socket
+	('192.168.10.20', 80, 'tcp')
+
+	>>> ip_addr, port_no, proto =socket1
+
+	>>>print ip_addr
+	192.168.10.20
+	>>>print port_no
+	80
+	>>> print proto
+	tcp
+
+	>>>a=10
+	>>>b=20
+	
+	>>>a, b=b, a
+	>>>a
+	20
+	>>>b
+	10
+
+	>>> * Parallel Assignment
+	
+	>>> (x,y,z) = (1,2,3)
+	>>> x
+	1
+	>>>y
+	2
+	>>>z
+	3
+
+	>>>(x,y,z) = (1,2,3,4)                   // * Values on both sides should be equal.
+	ERROR
+	>>>(x,y,z) = (1,2)
+	ERROR
+
+	>>>a=(1,"b")
+	>>>b=(2,"a")
+	>>>c=(1,"a")
+
+	>>>a
+	(1,'b')
+
+
+	>>>val1=(a,b,c)
+
+	>>>print val1
+	((1,'b'),(2,'a'),(1,'a'))
+	>>>print type(val1)
+	<type 'tuple'>
+	
+	>>>sorted(val1)
+	[(1,'a'),(1,'b'),(2,'a')]
+
+
+
+
+	** Dict Hash Table                               // Dictionary is imp concept in python and is extensively used also.
+		> Unsorted key-value pairs.
+		> "dict".
+		> contents are written as a series of key:value pairs within braces{}.
+		> keys are unique and immutable objects.
+		> Value can change.
+
+	>>> dict = {"a":"alpha", "b":"bravo", "c":"charlie", "d":"delta"}
+	>>> print dict
+	{"a":"alpha",  "c":"charlie", "b":"bravo", "d":"delta"}
+
+	>>>len(dict)
+	4
+
+	>>> print dict["a"]
+	alpha
+	>>> print dict["c"]
+	charlie
+	
+	>>> dict["d"]= 'Bubly'
+	>>> print dict
+	{"a":"alpha", "b":"bravo", "c":"charlie", "d":"bubly"}
+
+
+	>>> dict = {"1":"alpha", "2":"bravo", "3":"charlie", "4":"delta"}
+	>>> print dict
+	{"1":"alpha", "2":"bravo", "3":"charlie", "4":"delta"}
+
+	>>> salaries = {('Tinku', 'sharma'): 2000, ('Pinky', 'Bubly'):1999, ('Gabbar', 'Thakur'): 3000}
+	
+	>>> salaries
+	{('Pinky', 'Bubly'):1999, ('Gabbar', 'Thakur'): 3000, ('Tinku', 'sharma'): 2000}
+
+	>>>salaries[('Tinku','Sharma')]
+	2000
+
+	>>> * Looking up value which is not in the dict throws an Error
+	        * Use "in" to check
+	        * or
+	        * Use dict.get(key)
+
+	>>> * Returns the value or None if the key is not present
+
+	>>> dict = {"a":"alpha", "b":"bravo", "c":"charlie", "d":"delta"}
+
+	>>>dict[1]
+	'alpha'
+	>>>dict[10]
+	ERROR
+	
+	>>>1 in dict
+	True
+	>>>100 in dict
+	False
+	>>> if 1 in dict: print dict[1]
+	......
+	alpha
+
+	>>>if 100 in dict: print dict[100]
+	.......
+
+	>>> print dict.get(1)
+	alpha
+	>>> print dict.get(2)
+	bravo
+	>>> print dict.get(100)
+	None
+
+	>>> print dict
+	{"1":"alpha", "2":"bravo", "3":"charlie", "4":"delta"}
+
+	>>>for key in dict:
+	......	print key
+	......
+	1
+	2
+	3
+	4
+	
+	>>> for key in dict.keys():
+	.......	print key
+	.......
+	1
+	2
+	3
+	4
+	
+	>>> dict.keys()
+	[1,2,3,4]
+	>>>dict.values()
+	['alpha', 'bravo', 'charlie', 'delta']
+	
+	>>> for key in sorted(dict.keys()):
+	......	 print key, dict[key]
+	......
+	1 alpha
+	2 bravo
+	3 charlie
+	4 delta
+
+
+	>>>dict
+	{"1":"alpha", "2":"bravo", "3":"charlie", "4":"delta"}
+
+	>>>dict.items()
+	[('1':'alpha'), ('2':'bravo'), ('3':'charlie'), ('4':'delta')]
+
+	>>> for k, v in dict.items():
+	....... 	print k, '>>>', v
+	.......
+	1 >>> alpha
+	2 >>> bravo
+	3 >>> charlie
+	4 >>> delta
+
+	>>> * dict formating
+
+	>>> * The % operator substitute values from a dict into a string by name
+
+	>>> d1 = {'count':42, 'word':'garfield'}
+	>>> print d1
+	{'count': 42, 'word':'garfield'}
+
+	>>>s= 'I want %(count)d copies of %(word)s' %d1
+
+	>>>print s
+	I want 42 copies of garfield
+
+
+	>>>aa={1:{3:'oneone'}, 2:{4:'twotwo'}}
+	>>>print a[1][3]
+	oneone
+	>>>print a[1][1]
+	ERROR
+
+	>>>abc=set([1,2,3,4])
+	>>>print abc
+	set([1,2,3,4])
+	>>>print type(abc)
+	<type 'set'>
+
+
+
+
+
+					** CRYPTOGRAPHY **
+
+
+	> Substitution Cipher : eg. Atbash (Hebrew's)
+	>2 types :
+		1. Mono-alphabetic substitution Cipher : eg. Caesar Substitution
+		2. Poly-alphabetic substitution Cipher: eg. Vigenere Substitution
+
+	> Father of Modern Cryptography - William Fredrick Friedman
+	DES uses 56-bit key: i.e.. => raised to power 56
+
+	* Cryptosystems can provide the following services:
+		> Confidentiality
+		> Integrity
+		> Authentication
+		> Authorization
+		> Non-repudiation
+
+	> Data origin authentication.
+	> Encipher (means Ciphering).
+	> Entity Authentication.
+	> Decipher
+	> Key Clustering : when 2 different keys generate the same cipher text from the same plaintext.    // Not good
+	> Work factor(Cryptosystem Strength) : Estimated time,effort and resource necessary to break ecosystem.
+
+	> Running Key Cipher
+
+
+	* Symmetric
+		> Substitution
+		> Transposition
+
+	* Asymmetric
+
+

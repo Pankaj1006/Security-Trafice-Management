@@ -1,0 +1,43 @@
+
+
+Configuring Nagios on Linux :
+
+> yum install  nano wget net-tools httpd php gcc glibc glibc-common gd gd-devel make  net-snap openssl openssl-devel tar
+> useradd -m nagios
+> passwd
+ "give password"
+> groupadd nagcmd
+> usermod -a -G nagcmd nagios
+> usermod -a -G nagcmd apache
+> mkdir downloads
+> cd downloads/
+> wget http://192.168.73.202/sw/infra/nagios/nagios-4.0.3.tar.gz
+> tar -zxvf nagios-4.0.3.tar.gz
+> go to nagios-4.0.3
+> ./configure --with-command-group=nagcmd
+> make all
+> make install
+> make install-init
+> make install-commandmode
+> make install-config
+> make install-classicui
+> htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+> systemctl start httpd
+> go to downloads folder
+> wget http://192.168.73.202/sw/infra/nagios/nagios-plugins-2.0.tar.gz
+> tar -zxvf nagios-plugins-2.0
+> ./configure --with-nagios-user=nagios --with-nagios-group=nagios
+> make
+> make install
+> make
+> chkconfig --add nagios
+> chkconfig --level 3 5 nagios on
+> firewall-cmd --add-service=http
+> /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg {for verify}
+> after that restart the machine
+> systemctl start httpd
+> systemctl start nagios.service
+
+** Write the following command if u want to add ur email to contacts.cfg
+
+> vi /usr/local/nagios/etc/objects/contacts.cfg

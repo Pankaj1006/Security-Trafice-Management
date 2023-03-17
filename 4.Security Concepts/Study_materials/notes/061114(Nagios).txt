@@ -1,0 +1,312 @@
+					DATE : 06/11/14
+
+
+	* Understanding modules
+		> The dir() function returns the "names" (variables,modules,functions,built-in attributes etc) the modules/object defines in the form of a 		sorted list.
+		> Without arguments,dir() lists the names you have defined currently.
+
+		>eg. : dir(sys); help (sys); help(sys.argv)....
+
+
+	* Different ways of importing modules
+		> Using the import statement.
+		> The from statement, and
+		> The built-in__import__ function.
+
+	> import X
+		> Imports the module X,and creates a refrence to that module in the current namespace.
+		> After you have run this statement, you can use X.name to refer to things defined in module X.
+
+	> From X import *
+		> from sys import *       // it will load all the modules of import in the memory.
+		> dir(sys)
+		>dir(argv)
+		> import sys                // it will load all the modules of import in the memory. Only addressing is different from "from sys import*"
+
+		eg. :
+			#!/usr/bin/python
+			from sys import *
+			def main():
+				print argv
+			if __name__='__main__':
+				main()
+
+
+		>from sys import argv exit      // it will load only argv and exit of import in the memory.
+
+	> From X import*
+		> Import the module X, and creates refrences in the current namespace to all public objects defined by that module.
+		> If name was already defined, it is replaced by the new version.
+
+	> from X import a,b,c
+		> Imports the module X, and creates references in the current namespace to the given objects.
+		
+	>>> tinku=__import__('sys')
+	>>>dir(tinku)
+	
+
+	>>>dir(tinku.argv)
+
+	>>>dir(tinku.exit)
+
+
+	> =__import__('X')
+		> The modules name is passed as a string, and
+		> Explicitly assign it to a variable in the current namespace.
+
+
+	Program :
+		#!.........................................
+		def greetings(name):
+			print 'Good Morning' +name
+
+		def main():
+			greetings('DITISS')
+		if __name........................................
+
+
+	** In python every file is a module.
+
+	>>>dir()
+
+	>>>import one
+	>>>dir()
+	>>>dir(one)
+	>>>one.greetings(Tinku)
+	>>>one.main()
+	>>>help(one.greetings)              // we created it,so there is no help for this.
+	>>>file one.py                     // check it also
+
+
+	>>>file one.pyc          // check it
+		
+		* python is not fully interpreted language,it compiles also,it is like c *
+
+			* Dock String (re[resented by """" or ''' {i.e start and ends with (triple single qoutes or triple double quotes)}),should be the 			first line after function*
+	Program :
+		#!.........................................
+		def greetings(name):
+			"""Functions to print Good Morning Greetings.
+			Written by Mr. Tinku."""
+			print 'Good Morning' +name
+
+		def main():
+			greetings('DITISS')
+		if __name........................................
+
+
+
+	Program :
+		#!.........................................
+		import sys
+		import one
+
+		def main():
+			a=sys.argv[1]
+			one.greetings(a)
+		if __name........................................
+
+
+
+	* Boiler Plate syntax and __name__
+		> All python modules have a  __name__ "attribute"
+		
+		>When you are running a python interpreter,the local '__name__' variable is set to '__main__'.
+		>When a py file is run directly,the special variable '__name__' is set to '__main__'.
+
+	Program : one
+		#!.........................................
+		def val():
+			print 'The value of __name__ from val( ): ', +__name__
+
+		def main():
+			print 'The value of __name__ from main( ) : ', +__name__
+			val( )
+		if __name........................................
+
+
+	Program : two
+		#!.........................................
+		import one
+		def main():
+			print 'The value of __name__ from two .py main( ) : ', +__name__
+			one.val( )
+			one.main( )
+		if __name........................................
+
+
+
+
+
+
+	Program :
+		#!.........................................
+		import one
+
+		def main():
+			print 'Value of __name__ from two.py main():'+__name__
+			one.val()
+			one.main()		
+		if __name........................................
+
+
+
+
+
+
+
+			* DATA CENTRE THEORY *
+
+	DC - Phisical Security       // security guards etc.
+	DC - Logical Security       // disable unwanted services of pc & websites etc.
+	
+	DC- Cleaning :
+		> Triple-filteration high-efficiency particulate air(HEPA) vaccums capable of removing 99.97 % of particles (0.3 micros or larger) must be 		used.
+		> Power conditioning
+		> Brown-out : Low Voltage
+		> Black-out : Low current or No current
+		> Spike
+		> PDU- Power Distribution Units
+		> ESD - Electro Static Discharge : Rapid discharge of static electricity between two objects that are at different electric potential.
+		>RH-amount of moisture in the air at a given tempaerature in relation to the maximum amount that the air can hold at that temperature.
+		>If the air holds the maximum amount of moisture it possible can,Its RH is 100%.
+	
+
+	Air Exchange:
+		>Ideally,the DC required an air exchange every minute and the AC must pass at least 500 CFM  per ton.      // CFM : Cubic Feet per 		Minute
+	
+
+	* DC Consolidation
+		> Reduce the number of servers.
+		> Increase usage of storage.
+		> Reduce IT process.
+		> Reduce support staff.
+		> Reduce IT expenses.
+		> Increased service availability.
+
+
+	* Server Consolidation	          									
+		> Vertical Scaling. [multiple applications on one server]
+		> Horizontal Scaling.  [one or multiple apllications(same applications) on many server]
+		
+
+	* Storage Cosolidation           
+		> By consolidating Servers.			     // single server many storage		
+		> Various servers linked to a single storage subsystem.                      // single storage many server
+		> SAN
+		> NAS
+
+	* Network Consolidation
+		> Maintain diverse network, consolidate people.
+		> Select a pre-existing network and expand.
+		> New network.
+
+
+	* Service Consolidation
+		
+	* Process Cosolidation
+
+	* Staff Consolidation
+
+
+	* DC Consolidation Phases
+		> Study and document the current environment.
+		> Architect the target consolidated environment.
+		> Implement the new architecture.
+		> Control and adminster the consolidated environment.
+	*Type of Servers:
+		>Tower Server(Like our PC)
+		>Rack Server(Put in Rack like struture)
+		>Blade Server.
+
+
+	DC Servers- Benchmark:
+		>A standard of measurement.
+		>A set of programes tha performs work on operations on a system and returns back the capability of the tested configuration.
+		>Defines the speed and throughput of the system.
+
+	Benchmark Companies:
+
+		>SPEC
+		>Linpack
+		>NotesBench Mail
+
+		>SPECintXXXX(int means Speed as a parameter)
+		>SPECfpXXXX
+		>SPECint_rateXXXX(rate means Throughput as a parameter)
+		>SPECint_baseXXXX(base means Strict compiling)
+		>SPECint_rate_baseXXXX(Strict compiling to show the throughput)
+
+
+
+
+
+					** After 2 pm **
+
+
+			*> on linux client
+	* Install NRPE and Nagios Plugins (Nagios Client)
+	> yum install nrpe nagios -plugins-all openssl check_nrpe
+	> ls -l /usr/lib/nagios/plugins/
+	> take backup of nrpe.cfg (it is inside above folder)
+			> cp /etc/nagios/nrpe.cfg /etc/nagios/nrpe.conf.bk
+	>ls -l /etc/nagios/
+	>nano /etc/nargios/nrpe.cfg
+			>goto allowed_host=127.0.0.1, [host ip]
+
+
+
+
+	> netstat -antp | grep 5666                         // nrpe runs on port 5666
+	> service nrpe status
+	> service nrpe start
+	> /usr/lib/nagios/plugins/check_nrpe -H localhost
+		// OUTPUT : nrpe v2.14
+	> /usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p /dev/sda1        // w means warning and c means critical.
+	> firewall-cmd --add-port=5666/tcp
+
+
+
+
+			*>on nagios server {when u want to add a linux client do this---}
+
+	> go inside the previously downloaded folder.
+		> wget http://................................ nrpe.............
+		> tar -zxvf nrpe...................... (extract)
+		> go to nrpe folder.
+		> ./configure
+	> make all
+	> make install-plugin
+	> /usr/local/nagios/libexec/check_nrpe -H 192.168.64.140
+		// OUTPUT : nrpe v2.14
+	> nano /usr/local/nagios/etc/objects/commands.cfg
+	         //go towards the end of the above file and paste it : > define command{
+							       command_name check_nrpe
+							       command_line $USERS/check_nrpe -H $HOSTADDRESS -c $ARG1$
+							       }
+	> nano /usr/local/nagios/etc/objects/linux-remote.cfg
+		// copy configuration of linux-remote.cfg file from sir's server.
+	> nano /usr/local/nagios/etc/nagios.cfg
+		> do hash on windows machine command
+		> and write  inside linux remote : ........................................./linux-remote.cfg
+	> write "verify" command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

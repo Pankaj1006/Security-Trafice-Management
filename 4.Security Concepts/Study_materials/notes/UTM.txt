@@ -1,0 +1,35 @@
+				DATE : 11/11/14
+
+			UTM {Unified Threat Management}
+
+** Configuring UTM..
+
+> after connecting UTM to ur computer
+> check ur IP (should be in range of 1)
+> open in browser 192.168.1.1
+> login
+> next next next
+> for untrusted :
+	> Dynamic ip via dhcp
+> for wireless :
+	give ssid name,paswrd n ol..
+> next next next
+
+
+
+** Connect to UTM through  cmd :
+
+> telnet 192.168.1.1 23
+> give username and password
+> ? (for help)
+
+
+
+** For resetting UTM
+
+> unset all
+>press Y on prompt
+> reset
+>it will ask two questions.
+> first : N
+> second : Y

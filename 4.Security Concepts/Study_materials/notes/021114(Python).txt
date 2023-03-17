@@ -1,0 +1,132 @@
+					Date : 02/11/2014
+
+** List Data Types
+
+	>>>a=[1,2,3]
+	>>>print a
+	[1,2,3]
+	>>>print type (a)
+	<type 'list'>
+
+	>>> Elements in the list are often same type but it is not mandatory
+
+	>>>a=[1,2,3,4]
+	>>>a[0]
+	1
+	>>>a[0]=100
+	>>>print a
+	[100,2,3,4]
+	
+	>>>b='abcd'
+	>>>b[0]
+	'a'
+	>>>b[0] = 'x'
+	ERROR
+
+	* Strings are immutable.
+	* Lists are mutable.
+
+	>>>a=[1,2,3,4]
+	>>>b=a
+	>>>print a
+	[1,2,3,4]
+	>>>print b
+	[1,2,3,4]
+	
+	>>>a[2]=100       
+	>>>print a
+	[1,2,100,4]
+	>>>print b
+	[1,2,100,4]
+	
+	>>>x=[1,2,3,4]
+	>>>y=x
+	>>>z=x+y
+	>>>x[0]=100
+	>>>print x
+	[100,2,3,4]
+	>>>y
+	[100,2,3,4]
+	>>>z
+	[1,2,3,4,1,2,3,4]
+
+	>>>aa='abc'
+	>>>bb=aa
+	>>>aa='xyz'     
+	>>>print aa
+	xyz
+	>>>print bb
+	abc
+
+	
+	>>>a=[1,2,3,4,5]
+	>>>id(a)
+	123234345345
+	
+	>>>b=a[:]
+	>>>print b
+	[1,2,3,4,5]
+	
+	>>>id(b)
+	9957547403788
+	
+	>>>a[0]
+	1
+	>>>a[0]=100
+	>>>print a
+	[100,2,3,4,5]
+	>>>print b
+	[1,2,3,4,5]
+
+	>>>* Comparison and Slice works like Strings
+	>>>*  Empty list example:
+
+	>>>a=[]
+	>>>print a
+	[]
+	>>>print len(a)
+	0
+
+	>>> aa=[1,2,3]
+	>>>bb=[1,2,3]
+	>>>id(aa)
+	1232344235
+	>>>id(bb)
+	1232344235
+
+	>>>a=[1,2,3,4,5]
+	>>>for val in a:
+		print val
+	1
+	2
+	3
+	4
+	5
+
+	>>>squares=[1,4,9,16]
+	>>>sum=0
+	>>>for num in squares:
+		sum+=num
+	>>>print sum
+	30
+
+	>>>a=[1,2,3,4,5,6,7,8,9,12,34]
+	>>>print a
+	[1,2,3,4,5,6,7,8,9,12,34]
+	>>>8 in a
+	True
+	>>>50 in a
+	False
+
+	>>>list = ['Tinku', 'Pinky', 'Bubly']
+	>>>print list
+	['Tinku', 'Pinky', 'Bubly']
+	>>>if 'Gabbar' in list:
+		print 'Yo'
+	       else:
+		print 'YoYo'
+
+	     YoYo     //* Output
+
+
+	>>>

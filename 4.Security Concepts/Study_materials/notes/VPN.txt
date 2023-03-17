@@ -1,0 +1,13 @@
+SvPN-Technologies Supported
+# IPSec with Encription
+# IPSec inside L2TP
+# SSL 3.0 or with Encription
+------------------------------------
+TVPN-Technologies Supported
+# Layer 2 VPN
+ => ATM Circuits
+ => Frame Relay Circuits
+ => Transport of Layer 2 frames over MPLS
+
+# Layer 3 VPN
+ => MPLS with BGP

@@ -1,0 +1,209 @@
+Snort
+
+1 verify if snort is already installed
+2 download the snort binary
+3 download snort rules
+4 install snort (Do not change the default installation path  C\Snort)
+5 install snort dependencies (WinPCap) if not installed already
+
+
+open run as administration
+and go to snort.exe path
+
+
+download rules (snortrules-snapshot-2970.tar.gz) and extract that into c:/snort
+
+start snort : 
+ 	
+c:\snort\bin> snort
+!!!!!
+!!
+!
+!
+!
+!
+
+connecting packet processing (......)
+
+
+
+
+c:\snort\bin > snort -W           { available interfaces for listening }
+
+
+
+modify snort acording to wat interface u got
+
+#	c:\snort\bin> snort -i T
+
+
+
+####   Run snort in sniffer mode
+
+#	c:\snort\bin> snort-dev
+
+#	d:-> to shw the appln layer data in packet
+#	e:-> to disply the link layer data in packet
+#	v:-> verbase node
+
+
+
+
+######## Run snort in IDS mode
+
+snort -i 3 -l c:\snort\log -c c:\snort\etc\snort.conf -A console
+
+after that u'll get errors,,do as written and also take backup of snort.conf somewhere..
+
+
+ 
+
+
+l-log locn
+c-confg file to use
+A-alert (to console)
+
+after entering this cmmnd
+
+err no 1 : unknown rule type ipvar
+
+#note 
+ipvar - ip version 6
+replace ipvar with var
+total no of occurences should be 11
+then save it 
+
+
+2. 
+and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console 
+
+then u will get an error
+
+then open the conf file 
+edit the line 247 
+
+??
+
+3.and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console 
+
+error : 
+
+go to c /snort 
+copy the path
+
+and then paste in the conf file just below the last editing
+
+ 
+4. and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console 
+
+error : inside lib some file is missing
+
+go to lib create the folder by same name 
+and the copy the path of that folder
+then paste it in the conf file
+
+5. and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console 
+
+Error : normalize_ipv4 
+
+comment lines 280 to 284
+
+6. and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console 
+
+Error : white_list.rules not present
+
+go to rules folder
+
+check if file is present or not
+create if not present
+
+7. and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console 
+
+again fucking Error : black_list.rule not present
+
+8.   and then rerun the cmnd 
+snort-i 3-T c:\snort\log-c c:\snort\etc\snort.conf -A console
+
+and this time it would probably run.......
+
+
+
+
+
+
+
+
+
+
+***** some other changes ******
+
+change 
+var RULE_PATH ../rules
+var SO_RULES_PATH .../so_rules
+var PREPROC_RULE_PATH .../preproc_rules
+
+
+
+to
+
+var RULE_PATH C:\snort\rules
+var SO_RULES_PATH C:\snort\so_rules
+var PREPROC_RULE_PATH C:\snort\preproc_rules
+
+
+
+###
+change 
+
+whitelist $WHITE_LIST_PATH/white_list.rules,  \
+blacklist $BLACK_LIST_PATH/black_list.rules
+
+to
+
+whitelist $WHITE_LIST_PATH\white_list.rules,  \
+blacklist $BLACK_LIST_PATH\black_list.rules
+
+
+###
+change
+
+var WHITE_LIST_PATH .../rules
+var BLACK_LIST_PATH .../rules
+
+to 
+
+var WHITE_LIST_PATH ...\rules
+var WHITE_LIST_PATH ...\rules
+
+
+###
+change
+include $RULE_PATH / blacklist.rules
+ 
+to
+
+include $RULE_PATH / black_list.rules
+
+
+
+
+
+*******"assngmnt : difference btwn windows ping and linux ping."
+
+
+
+
+
+
+#####creating my rules
+
+
+1.alert ip any any -> any any ( msg:" ip Packet detected"; sid: 3666664564;)
+2.alert icmp any any -> any any ( msg:" ip Packet detected"; sid: 3666664564;)
+3.alert tcp any any -> any any ( msg:" xmas detected"; sid: 3666664564;)

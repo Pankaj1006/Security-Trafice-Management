@@ -1,0 +1,300 @@
+
+							DATE : 07/11/14
+
+
+					** File Handling **
+
+		> when u want to open a file in ascii mode use : rU
+		> when u want to open a file in binary mode use : rb
+
+
+	>>>f=open('text.txt', 'rU')
+	>>>print type(f)
+	<type 'file'>
+	>>>dir(f)
+
+	>>>print f
+	<open file 'text.txt', mode 'rU' at 0X10308......>
+
+	>>>for line in f:
+		print line
+	........
+	................................
+	................................
+	................................
+
+
+
+
+	Program :                                       /// give output as object
+		#!/usr/bin/python
+		import sys
+		def print_file(filename)
+			f=open(filename,'rU')
+			print "The data type of variable 'f' is:",type(f)
+			print '##############################'
+			for line in f:
+				print line
+				print "The data type of  'line' is:", type(line)
+			f.close()
+		def main():
+			print_file(sys.argv[1])
+		if __name__=='__main__':
+			main()
+
+
+
+
+
+
+	Program : 			 /// give output as list
+		#!/usr/bin/python
+		import sys
+		def print_file(filename)
+			f=open(filename,'rU')
+			print "The data type of variable 'f' is:",type(f)
+			print '##############################'
+			lines= f.readlines()
+			print lines
+			print type(lines)
+			print '============='
+			for line in lines:
+				print line
+				
+			f.close()
+		def main():
+			print_file(sys.argv[1])
+		if __name__=='__main__':
+			main()
+
+
+
+
+
+	Program :				 /// give output as string
+		#!/usr/bin/python
+		import sys
+		def print_file(filename):
+			f=open(filename,'rU')
+			print "The data type of variable 'f' is:",type(f)
+			print '##############################'
+			lines= f.read()
+			print lines
+			print type(lines)
+			print '============='
+			print repr(lines)
+				
+			f.close()
+		def main():
+			print_file(sys.argv[1])
+		if __name__=='__main__':
+			main()
+
+
+
+
+	>>> f=open ('text.txt','rb')
+	>>> content = f.read()
+	>>> print type(content)
+	<type 'str'>
+	>>>print content
+
+
+
+
+
+
+	Program :				
+		#!/usr/bin/python
+		import sys
+		import binascii
+
+		def print_file(filename)
+			f=open(filename,'rb')
+			content= f.read()
+			print "The data type of variable 'f' is:",type(f)
+			print "The length of the variable 'content' is:", len(content)
+			print '========================'
+			print "Printing the variable 'content': "
+			print "%s" % (content)
+			print '========================'
+			print "Printing the Hex Values"
+			print "%s" $ (binascii.hexlify(content))
+			print '======================'
+			
+				
+			f.close()
+		def main():
+			print_file(sys.argv[1])
+		if __name__=='__main__':
+			main()
+
+
+
+
+
+
+
+	Program :				
+		#!/usr/bin/python
+		import sys
+		
+
+		def write_file(filename)
+			f=open(filename,'w')
+			for val in range(20):
+				f.write(str(val)+ '\n')
+			
+				
+			f.close()
+			print 'File operation over'
+		def main():
+			write_file(sys.argv[1])
+		if __name__=='__main__':
+			main()
+
+
+
+
+
+							** Crypto [after 11 am] **
+
+
+	* Symmetric Algorithm
+		> DES
+		> 3DES
+		> Blowfish
+		> IDEA
+		> RC4,RC5,RC6
+
+	* Asymmetric Algorithms
+		> Secure Message Format = Scenario when it can be decrypted by the person who has the corresponding private key.
+		> Encrypting data with the sender's private key = Open Message Format.
+	
+
+	* Symmetric Algorithms
+		> Faster
+		> Types:
+			> Block cipher : which works on blocks of bits.   [best implemented in software level]
+			> Stream cipher : which works on 1 bit at a time. [best implemented in hardware level]
+		> A strong cipher contains the right level of two attributes:
+			> Confusion : commonly carried out through substitution.
+			> Diffusion : carried out by using transposition.
+
+		> Stream Ciphers use keystream generators which produces a stream of bits that is XORed with the plaintext bits to produce ciphertext.
+
+	IV (Initialization Vector):
+		> Random values that are used with algorithms to ensure patterns are not created during the encryption process.
+		> Used with keys and do not need to be encrypted when being sent to the destination.
+		> If IV's are not used,two identical plaintext values that are encrypted with the same key will create the same ciphertext.
+
+	* Hybrid : Symmetric of one is encypted using public key of other and then communications is done using that symmetric key.
+
+
+
+	* Asymmetric
+		> Hard to break due to complex algo.
+		> Slower than Symmetric.
+		> Better key distribution.
+		> Better scalabilty.
+		> Can provide authentication and non-repudation along with other services.
+
+	* Asymmetric algo :
+		> RSA
+		> ECC
+		> Diffie-Hellman
+		> EL-Gamal
+		> DSA
+		> Knapsack.
+
+
+	
+
+
+		fc19(1) [proxy server] :
+		> install yum
+		> yum install net-tools nano nginx 
+		> netstat -antp
+		> systemctl start nginx.service
+		> netstat -antp
+		> firewall-cmd  --add-service=http
+	#	> ls -l /usr/share/nginx/html/
+	#	> ls -l /var/www
+	#	> mkdir /var/www
+		> nano /etc/nginx/conf.d/anythng.conf
+	#		> server {
+	#			listen 80;
+	#			root /var/www/;
+	#			index index.html
+	#		               }
+	#	> cd /etc/hosts
+	#	> elinks
+		
+
+
+		configure nginx :
+			> [write inside anything.conf]
+		server {
+  
+		listen 80;
+  
+		server_name example1.com;
+  
+		access_log off;
+  error_log off;
+ 
+		location / 
+		{	
+       
+			proxy_pass http://192.168.253.128:80;
+      
+  			proxy_redirect          off;
+     
+   			proxy_set_header        Host            $host;
+   
+     			proxy_set_header        X-Real-IP       $remote_addr;
+     
+   			proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+     
+   			proxy_max_temp_file_size 0;
+       
+ 			client_max_body_size    10m;
+       
+ 			client_body_buffer_size 128k;
+     
+   			proxy_connect_timeout   90;
+    
+    			proxy_send_timeout      90;
+      
+
+		 	proxy_read_timeout      90;
+       
+ 			proxy_buffer_size               4k;
+   
+ 		    	proxy_buffers           4 32k;
+     
+ 		  	proxy_busy_buffers_size 64k;
+     
+ 		  	proxy_temp_file_write_size 64k;
+     
+   }
+
+}
+
+
+		
+
+		fc19(2) [web server] :
+
+		> disable selinux
+		> iptables flush
+		> yum clean all
+		> install yum
+		> go to /var/www/html : and make a website there.
+		> start httpd.service
+		
+
+
+
+
+

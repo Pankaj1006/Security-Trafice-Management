@@ -1,0 +1,637 @@
+show databases								DATE : 10/11/14
+
+
+
+
+	*MySQL :
+		> DB = Collection of Data
+		> Made up of tables
+		> Coloumns and Rows
+		> Generally all tables have a Primary Key - coloumns that ara unique.
+		> SQL - language most databases use.
+
+
+		command for installing mysql : 
+			> yum install community-mysql community-mysql-server community-mysql-devel
+			> systemctl start mysqld.service        
+			> netstat -antp | grep 3306                                // mysql runs on 3306
+			> 
+			> mysqladmin -u root password Password1234             //giving password to mysql;by default there is no password in mysql
+			>  mysql -u root -p
+ 			mysql> SHOW DATABASES;                       // mysql is not case sensitive....
+ 			mysql> CREATE DATABASE IF NOT EXISTS db1;
+ 			mysql> SHOW DATABASES; 
+ 			mysql> USE db1;
+ 			mysql> SELECT database();    	{for knowing ur current database}
+ 
+
+
+
+	TABLE
+	id		int		10 (Primary Key)
+	username		varchar		30 (Unique Key)
+	password		varchar		32
+
+
+ 			mysql> CREATE TABLE users (
+ 			       --> id int(10) NOT NULL AUTO_INCREAMENT,
+ 			       --> username varchar(30) NOT NULL,
+ 			       --> password varchar(32) NOT NULL,
+ 			       --> PRIMARY KEY (id),
+ 			       --> UNIQUE (username)
+ 			       --> );
+
+
+ 			mysql> SHOW TABLES
+ 			mysql> DESC users;              			// {gives description of the user}  			       
+ 			mysql> SHOW COLOUMNS FROM users;	// {gives description of the user}
+ 			mysql> INSERT INTO users VALUES (1,'Tinku','Tsharma123');
+ 			mysql> INSERT INTO users (id, username, password) VALUES (2, 'Pinky', 'Pblablabla');
+ 			mysql> INSERT INTO users (id, username, password) VALUES (3, 'Gabbar', 'Gsingh123');
+ 			mysql> SELECT id, username, password FROM users;
+ 			mysql> SELECT * from users;
+ 			mysql> SELECT id AS ID, username AS USERNAME, password as PASSWORD FROM users;
+ 			mysql> SELECT id, username, password FROM users WHERE id = 2 ;
+ 			mysql> SELECT id, username, password FROM users WHERE username = Tinku ;
+ 			mysql> SELECT * FROM users;
+ 			mysql> UPDATE users SET password='Pinky123' WHERE id=2;
+ 			mysql> DESC users
+ 			mysql> ALTER TABLE users ADD COLUMN fname varchar(50) NOT NULL AFTER id;
+ 			mysql> ALTER TABLE users ADD COLUMN lname varchar(50) NOT NULL AFTER fname;
+ 			mysql> DESC users;
+ 			mysql> SELECT * FROM users;
+ 			mysql> UPDATE users SET fname='Pinky', lname='Sharma' WHERE id=1;
+ 			mysql> UPDATE users SET fname='Gabbar', lname='Singh' WHERE id=1;
+ 			mysql> exit
+			Bye
+
+
+	
+		
+
+		> pwd
+		>ls -l
+		> mysqldump --user root --password=Password1234 db1 > db1.sql              // taking backup of databse db1
+		> cat db1.sql | less 
+
+
+
+
+
+			>  mysql -u root -p
+			mysql> SELECT * FROM users;
+			mysql>  DELETE FROM users WHERE id=3;
+			mysql> SELECT * FROM users;
+			mysql> DESC users;
+			mysql> ALTER TABLE users DROP COLUMN lname;
+			mysql> DESC users;
+			mysql> SHOW TABLES;
+			mysql> DROP TABLE users;
+			mysql> SHOW TABLES;
+			mysql> SHOW DATABASES;
+			mysql> DROP DATABASE db1;
+			mysql> SHOW DATABASES;
+
+					
+
+				// first create empty database where u want to restore our databse ehich e=we deleted from aboive command.
+
+			
+ 			> CREATE DATABASE IF NOT EXISTS db1;                        //name can be db1 also,bcoz it is not there in the memory now.
+ 			> mysql -u root -p db2 < db1.sql
+ 			> mysql -u root -p
+ 			mysql> USE db2;
+ 			mysql> USE db2;
+ 			mysql> SHOW TABLES;
+ 			mysql> DESC users;
+
+
+
+				// using python program to check whether the file has read/write/execute permission or not.
+
+
+
+		Program :
+			#!.................
+			import os, sys
+	
+			def main():
+				loc = sys.argv[1]
+				ret = os.access(loc,os.F_OK)
+				print "F_OK - return value %s" % ret
+ 				ret = os.access(loc,os.R_OK)
+				print "R_OK - return value %s" % ret
+				ret = os.access(loc,os.W_OK)
+				print "W_OK - return value %s" % ret
+				ret = os.access(loc,os.X_OK)
+				print "X_OK - return value %s" % ret
+
+			if __name__..............................................:
+				...............
+
+
+
+
+		Program : one.py
+			#!.................
+			import os, sys
+	
+			def square():
+				return x * x
+
+			if __name__..............................................:
+				print "square(42) = ", square(42)
+
+
+
+		Program :two.py
+			#!.................
+			import one
+	
+			def main():
+				print 'Calling one module'
+				print one.square(100)
+
+			if __name__..............................................:
+				main()
+
+
+		>>first run one.py and then run two.py
+
+
+
+
+
+		Program : three.py
+			#!.................
+			import os, sys
+	
+			def sub_main():
+				print 'If someone else is calling me, you will see this'
+			def main():
+				print 'If I am directly run, You will see this'
+
+			if __name__..............................................:
+				main()
+			else:
+				sub_main()
+
+
+
+		Program : four.py
+			#!.................
+			import three
+	
+			def main():
+				print 'Program that imports the one module'
+			
+
+			if __name__..............................................:
+				main()
+			
+
+
+			>>first run three.py and then run four.py
+
+
+
+
+
+
+		Program : 
+			#!.................
+			
+	
+			def main():
+				print 'Output of dir() before class defenition'
+				print dir()
+				class Employee:
+					Employee_ID = 0
+					Employee_Name
+					Employee_Salary = ''
+				print 'Output of dir(Employee) after class defenition'
+				print dir(Employee)
+				print ''
+				print Employee.Employee_ID		
+				print Employee.Employee_Name
+				print Employee.Employee_Salary
+				print 'The class Documentation is : ',Employee.__doc__
+				print 'The module name in which class is defined: ',Employee.__module__
+			if __name__..............................................:
+				main()
+			
+
+
+		Program : 
+			#!.................
+			
+	
+			def main():
+				print 'Output of dir() before class defenition'
+				print dir()
+				class Employee:
+					Employee_ID = 0
+					Employee_Name
+					Employee_Salary = ''
+				print 'Output of dir(Employee) after class defenition'
+				print dir(Employee)
+				print ''
+				print Employee.Employee_ID		
+				print Employee.Employee_Name
+				print Employee.Employee_Salary
+				print 'The class Documentation is : ',Employee.__doc__
+				print 'The module name in which class is defined: ',Employee.__module__
+				emp1 = Employee()
+				print 'Output of dir() after emp1 is created'
+				print dir()
+				print 'Output of dir(emp1)'
+				print dir(emp1)
+			if __name__..............................................:
+				main()
+			
+
+
+
+
+					// Assigning values to emp1
+
+			> tail -f one.py
+				emp1.Employee_ID = 1
+				emp1.Employee_NAME = 'Tinku'
+				emp1.Employee_SALARY = 10000
+
+
+
+
+
+
+
+
+		Program : 
+			#!.................
+			
+	
+			def main():
+				print 'Output of dir() before class defenition'
+				print dir()
+				class Employee:
+					Employee_ID = 0
+					Employee_Name
+					Employee_Salary = ''
+				print 'Output of dir(Employee) after class defenition'
+				print dir(Employee)
+				print ''
+				print Employee.Employee_ID		
+				print Employee.Employee_Name
+				print Employee.Employee_Salary
+				print 'The class Documentation is : ',Employee.__doc__
+				print 'The module name in which class is defined: ',Employee.__module__
+				emp1 = Employee()
+				print 'Output of dir() after emp1 is created'
+				print dir()
+				print 'Output of dir(emp1)'
+				print dir(emp1)
+			if __name__..............................................:
+				main()
+
+
+
+
+
+
+
+
+			
+		>>tac two.py (for reverse printing of program)
+
+def main():
+	print 'Output of dir() before class defenition'
+				print dir()
+				class Employee:
+					Employee_ID = 0
+					Employee_Name
+					Employee_Salary = ''
+				print 'Output of dir(Employee) after class defenition'
+				print dir(Employee)
+				print ''
+				print Employee.Employee_ID		
+
+
+
+
+
+
+
+Py:(imp theory)
+* A method always has to have an argument called self between the paranthesis
+*when python calls a method , it passes the current objetc to that method as the first agrument
+*Example: when we call tinku.sleep() the first argument passed to the method will be tinku
+*if u want to add more arguments u should use 'self' .
+*self is referenced to the object that is currently  being manipulated.
+
+
+
+Program:
+
+#!/usr/bin/python
+
+class Employee:
+
+	empcount=0
+	def_init_(self,id,name,salary):
+	self.name=name
+	self.salary=salary
+	Employee.empcount +=1
+
+	def displayEmp(self):
+	print'========'
+	print 'Employee count = %d',% Employee.empcount
+	print 'ID','self id','Name','salary','self.salary'
+	print' '
+
+def main():
+	emp1= Employee(1,'tinku',5000)
+	emp1.displayEmployee()
+	emp2= Employee(2,'Pinky',6000)
+	emp2.diaplayEmployee()
+
+if __name__ == '__main__':
+	main()
+
+
+
+op:
+
+=============
+Employeen count = 1
+ID: 1, name: tinku, salary: 5000
+ID: 2, name: pinky, salary: 6000
+
+
+
+
+### OTHER way OF  CALLING THE METHOD:
+
+def main():
+	emp1= Employee(1,'tinku',5000)
+	emp1.displayEmployee()
+	emp2= Employee(2,'Pinky',6000)
+	Employee.diaplayEmployee(emp2)    <------- new way
+
+
+
+### #### INHERITENCE
+
+
+
+>> dir()
+['bulitin','__doc__','__name__','___package__']
+>>class t1:
+	abc=1
+
+>>dir()
+['t1',-- = --]
+>>dir(T1)
+['__doc__','__module__','abc']
+
+>>T1._base_
+()
+>>>class T2(T1):
+      xyz = 22
+>>dir()
+['T1','T2',-- = --]
+
+
+>>dir(T2)
+
+>>>T2.__base__
+[..........T1]
+
+
+
+
+
+
+		Program : four.py
+		#!.................
+		class Employee	
+	
+			def __init__(self, id, name):
+				self.id =id
+				self.name = name
+			def displayEmployee(self):
+				print self.name
+		class SysAdmin(Employee):
+			def __init__(self, id, name, type):
+				Employee.__init__(self, id, name)
+				self.type = type
+			def getType(self):
+				print self.type
+			def backup(self):
+				print 'Backup process completed'
+			def main():
+				emp1 = Employee(1, 'Tinku')
+				emp2 = SysAdmin(2, 'Pinky', 'DBAdmin')
+				emp1.displayEmployee()
+				emp2.displayEmployee()
+				emp1.getType()
+				emp2.backup()
+			
+		if __name__..............................................:
+				main()
+
+
+
+	>>> import four
+	>>> emp1 = four.Employee(1, 'Shanky')
+	>>> emp2 = four.Sysadmin(2, 'akki', 'webadmin')
+	>>> print emp1
+	>>> isinstanceof(emp1, four.Employee)
+	True
+	>>> isinstanceof(emp1, four.SysAdmin)
+	False 
+	>>> isinstanceof(emp2, four.Employee)
+	True 
+	>>> isinstanceof(emp2, four.SysAdmin)
+	True
+	>>> issubclass(four.SysAdmin, four.Employee)
+	True
+	>>> issubclass(four.Employee, four.SysAdmin)
+	False
+
+
+
+
+
+			// Global Variable in Python
+
+
+	>>>* Class, Instance and Global Variables
+	>>>* Class
+	>>>* Instance Variable
+	>>>* Global Variables are defined by declaring it as global.
+
+
+
+		Program : four.py
+		#!.................
+		globvar = 0
+		def set_globvar_to_one():
+			global glovar
+			globvar = 1
+		def print_globvar():
+			print globvar
+		def main():
+			print globvar()
+			set globvar_to_one()
+			print_globvar()
+			print_globvar
+			
+		if __name__..............................................:
+				main()
+
+
+
+
+
+
+
+
+		Program : four.py
+		#!.................
+		class Employee	
+	
+			def __init__(self, id, name):
+				self.id =id
+				self.name = name
+			def displayEmployee(self):
+				print self.name
+				print ' '
+		class SysAdmin(Employee):
+			def __init__(self, id, name, type):
+				Employee.__init__(self, id, name)
+				self.type = type
+			def getType(self):
+				print self.type
+			def backup(self):
+				print 'Backup process completed'
+			def displayEmployee(self):
+				print self.id, self.name, self.type
+				print 'Printed from SysAdmin Sub-class'
+				print ''
+			def main():
+				emp1 = Employee(1, 'Tinku')
+				emp2 = SysAdmin(2, 'Pinky', 'DBAdmin')
+				emp1.displayEmployee()
+				emp2.displayEmployee()
+				emp2.getType()
+				emp2.backup()
+			
+		if __name__..............................................:
+				main()
+
+
+
+						**SOCKET PROGRAMMING**
+
+What is Socket ?
+	> >Network end-point for communication b/w two or more entities.
+	>>Two kinds of sockets
+	        >TCP and UDP sockets
+	               >Regular servers and clients
+	       > Raw sockets
+	              >Sniffing and injection
+	> >Server
+	       > offer a service
+	>>client
+	       >user/ consure the service
+	>>The server first creates a socket.
+	
+	>Simple socket Program in Py :-
+		
+STEP 1 : 		** * create the (server) socket ** *
+	
+	> the socket() method is used to create the socket
+	>Returns a socket descriptor which can be used in other socket related function/methods/
+
+Program:
+	>>>import socket	
+	>>>TCPSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	>>>print type(TCPSocket)
+
+SOCKET METHOD:
+	> syntax = socket (socket_family, socket_type, protocol=0)
+	>The socket_family is either:
+	       > AF_UNIX, or
+	       >AF_INET
+	> For internet based applications,it is typically AF_INET
+	> The socket_type is either:
+		* SOCK_STREAM 		#(TCP)
+		*SOCK_DGRAM		#(UDP)
+	>The protocol is generally not specified, defaulting to 0
+	>After the socket object is setup,all further interaction will occur using socket objects methods.
+
+
+STEP 2: 		**** BIND THE SOCKET *****
+	
+	> Bind the socket to an interface and port on the server.
+	>use the bind() call
+	>syntax= TCPSocket.bind(('0.0.0.0', 8000))
+	>passes
+Program:
+	>>>import socket	
+	>>>TCPSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	>>>print type(TCPSocket)
+	>>> TCPSocket.bind(('0.0.0.0', 8000))
+
+STEP 3 : 		**** LISTEN FOR CONNECTIONS *******
+
+Program:
+	>>>import socket	
+	>>>TCPSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	>>>print type(TCPSocket)
+	>>> TCPSocket.bind(('0.0.0.0', 8000))
+	>>>TCPSocket.listen(2)
+
+STEP 4: 		**** ACCEPT THE CONNECTIONS ******
+
+	>used to accept the incoming client connection requests.
+	>the accept() method returns a Tuple.
+	>First element -a client side socket which is used by the server to talk to the client
+	> syntax
+	
+		(ClientSocket, (ip,port)) = TCPSocket.accept()
+
+	>everytime one new client connects,a new client socket is created.
+	>by default accept() is a blocking call
+
+
+	>>>  (ClientSocket, (ip,port)) = TCPSocket.accept()
+
+	do telnet in client side to server : telnet 192.168.64.129 8000 
+
+	>>> print type (ClientSocket)
+	>>>print ip
+	192.168.64.141
+	>>>print port
+	34369
+STEP 5: SEND DATA
+
+	>>>ClientSocket.send('\nPy Rocket\n')   // u'll get Py Rocket on client side telnet..
+	10
+
+STEP 6: RECEIVE DATA
+
+	>>> data = Clientsocket.recv(2048)
+	>>> print data
+	DITISS ROCKS                  //comes from client side
+
+STEP 7: CLOSE CLIENT SOCKET
+
+	>>> ClientSocket.close()
+
+STEP 8: CLOSE SERVER SOCKET
+
+	>>> TCPSocket.close()
+
+

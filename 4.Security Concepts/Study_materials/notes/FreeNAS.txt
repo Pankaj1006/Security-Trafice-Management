@@ -1,0 +1,14 @@
+> install NAS in vm,but don'tr power on the machine.
+> first add another hdd then power on the machine.
+>after full installation
+> then go to windows machine,type NAS IP in browser.
+> give password
+> go to storage -> volumes -> zfs volume manager
+> add hdd here and also give permissions.
+> disable permissions for chroot and root
+> go to sharing -> CIFS (Windows) -> add windows share.
+> here give name of ur hdd(to share) & select the path of that hdd;allow guest access.
+> then go to services -> ftp {add ur hdd}
+> go to control services -> turn on ftp and CIFS
+> go to account -> users -> add user and give permissions u want
+

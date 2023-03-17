@@ -1,0 +1,243 @@
+						DATE : 08/11/14
+
+
+	Program :                                       
+		#!/usr/bin/python
+		import sys
+		def write_file(filename)
+			f=open(filename,'w')
+			for val in range(20):
+				print  >>  f, val
+			f.close()
+			print 'File operation over'
+		def main():
+			write_file(sys.argv[1])
+		if __name__=='__main__':
+			main()
+
+
+
+
+	
+
+	>>>* RE {Regular Expression}
+	>>>* Powerfull 'language' for matching text patterns.
+	>>>* The py module provides RE support.
+	>>>* A RE search is written as
+		match = re.search(pat,text) 
+	>>>* The re.search() method takes a regular expression pattern and a string and
+	          and searches for that pattern within the string.
+	>>>* If the search is successful, search() returns a "match object".
+	>>>* The match object has a method called group() which will return the matching text.
+	>>>* If the search is unsuccessful, search() returns none.
+	>>>* So to avoid error use if statement.
+
+
+
+	
+	>>>import re
+	>>>def Find(pat, text):
+	.......	match = re.search(pat, text)
+	.......	if match: print match.group()
+	.......	else: print 'Not Found'
+
+	>>> Find('ig', called piiiiig')
+	ig
+	>>> Find('ig', called piiiiiag')
+	Not Found
+
+
+
+	>>> match= re.search('iig', 'caling piiiig piiig')
+	>>> match.group()
+	iig
+	
+	>>> match= re.search('iigs', 'caling piiiig piiig')
+	>>> match.group()
+	ERROR : no search found.
+	>>> print type(match)
+	<type 'NoneType'>
+	
+
+
+	>>>* A period (.) - matches any single character except newline '\n'
+
+	>>> Find('.', 'Pune')
+	P
+	>>> Find('.', 'une')
+	u
+	>>> Find('..', 'Pune')
+	Pu
+	>>> Find('...', 'Pune')
+	Pun
+	>>> Find('....', 'Pune')
+	Pune
+	>>> Find('.....', 'Pune')
+	Not Found
+	>>> Find('.....', 'Pune is nice')
+	Pune 			// There is space after pune.															
+
+	>>> a = 'how\nare\nyou\nmy\nfriend'
+	>>> Find('.....', a)
+	frien
+
+	>>>a = r'how\nare\nyou\nmy\nfriend'                     // r means raw_input thats why it will take \n as two characters.
+	>>> Find('.....', a)
+	how\n
+
+
+
+	>>>* Assume I have a variable named 'a' containing a text.
+	>>>* I want to find out the occurance of any three character followed by the character 't'.
+    	          How do I write the RE ?
+
+	>>> Find('...t', a)
+	Not Found
+	>>> Find('...t', anything)
+	anyt
+
+	>>> Find('z..t', 'zeeet')
+	Not Found
+	>>> Find('z..t', 'zztt')
+	zztt
+
+
+	>>>* How to look for a character . (dot)>
+
+	>>> Find('l\.', 'Fill in the bl...s')
+	l.
+	>>> Find('\.s', 'Fill in the bl...s')
+	.s
+
+	>>> Find('\', 'Fill in the bl\\\s')
+	ERROR
+	>>> Find(r'\', 'Fill in the bl\\\s')
+	\
+	>>> Find(r'\\\', 'Fill in the bl\\\s')
+	\
+	
+	>>> Find(r'\section', 'Testing \section')
+	Not Found
+
+	>>> Find(r'\\section', 'Testing \section')
+	\section
+
+	>>> Find(r'\\\section', 'Testing \section')
+	Not Found
+
+
+	>>>* I want to find the \ and . together.
+	
+	>>> Find(r'\.s', 'How to find \.s')
+	.s
+	>>> Find(r'\\.s', 'How to find \.s')
+	\.s
+	>>> Find(r'\\\.s', 'How to find \.s')
+	\.s
+	>>> Find(r'\\.s', 'How to find \js')
+	\js
+
+	>>>* \w = matches a 'word' character or a letter or digit or '_'
+
+	>>> Find(r':\w\w\w\w', 'looking for :this and not THIS')
+	:this
+	>>> Find(r':....', 'looking for :this and not THIS')
+	:this
+	>>> Find(r':\w\w\w\w', 'looking for :thi$ and not THIS')
+	Not Found
+	>>> Find(r'\w\w\w\w', 'looking for :thi$ and not THIS')
+	look
+
+	>>>* \d - decimal
+	
+	>>> Find(r':\d\d\d\d', 'looking for :this and :1234 not THIS')
+	:1234
+	>>> Find(r':....', 'looking for :this and :1234 not THIS')
+	:this
+	>>> Find(r':\w\w\w\w', 'looking for :this and :1234 not THIS')
+	:1234
+
+
+	>>>* \s - matches a single whitespace
+
+	>>> Find(r'\d\s\d\s\d','This is what we need to find 1 2 3 through RE')
+	1 2 3
+	>>> Find(r'\d\s\d\s\d','This is what we need to find 1 2	       3 through RE') // it has single tab
+	1 2	3
+	>>> Find(r'\d\s\d\s\d','This is what we need to find 1 2   3 through RE')  // it has two spaces
+	Not Found
+
+	>>>->'+' means 1 or more'
+	>>> Find(r'\d\s+\d\s+\d','This is what we need to find 1          2   3 through RE')  // any no. of spaces.
+	1          2   3
+	>>> Find(r'\d\s+\d\s+\d','This is what we need to find 12   3 through RE')  // any no. of spaces.
+	Not Found
+
+
+	>>>-> '*' means 0 or any.
+	>>> Find(r'\d\s*\d\s*\d','This is what we need to find 1          23 through RE')  // any no. of spaces.
+	1          23
+	>>> Find(r'\d\s*\d\s*\d','This is what we need to find 123 through RE')  // any no. of spaces.
+	123
+	>>> Find(r'\d\s*\d\s*\d','This is what we need to find 12    3 through RE')  // any no. of spaces.
+	12    3
+
+
+	>>> Find(r,':\w+','looking for :this and not THIS')     
+	:this
+	>>> Find(r,':\w+\w','looking for :this and not THIS')     
+	:this
+
+
+	>>>* \S - matches any non-whitespace character.
+
+	>>> Find(r'\S+', 'I am looking for :filename?userid=heaven like that')
+	I
+	>>> Find(r':\S+', 'I am looking for :filename?userid=heaven like that')
+	:filename?userid=heaven
+
+
+
+
+					** After 11 am **
+
+
+
+
+	* *Session Keys
+		> A session key is a symmetric key that is used to encrypt messages between two users.
+		> It is not different from the symmetric keys,but it is only good for one communication session b/w users.
+	** DES :
+		> DES- standard
+		>DES- Algo
+		> symmetric block encryption algorithm
+		> 64 bit blocks of plain text | 64 bit blocks of cipher text
+		>same key for encryption and decryption
+		>uses a 64 bit key:-  56 bit makes up the true key, 8 bits are used for parity
+		>The blocks are put through 16 rounds of transposition and substitution functions.
+	**Broken Algo:
+		>An algo is broke if someone is able to uncover a key that was used during an encryption process.
+		>Two ways to break:
+			>Bruteforce
+			>Identifying weakness in the algo.
+	MODES:
+	
+	Block Cipher MODE(DES MODE):
+		*Electronic code Book(ECB) 
+			-----> [ Weakest, Fastest and Simplest Encryption algorithm which work independently and ideal for database ]
+		*Cipher Block chaining(CBC)
+			----->[IV is used with the key for the 1st block and the IV for 2nd block will be the cipher of the 1st block.........]
+				[for mass data like email]
+		*Cipher Feedback(CFB) [for data stream like terminal server encrytion its 8 bit or 1 byte block]
+		*O/p Feedback(OFB)	
+		*Counter Mode(CTR)
+
+	** ECB :- If the algo encounters the same block {means 64 bits} of clear text multiple times it will produce the same encrypted block.
+
+
+
+
+
+					
+
+

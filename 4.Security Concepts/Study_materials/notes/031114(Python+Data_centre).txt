@@ -1,0 +1,235 @@
+						DATE : 03/11/14
+
+	>>>a.apend(element)
+	>>>list.insert(index,element)
+	>>>list.extend(list2)
+	>>>a=['aa','bb']
+	>>>b=['cc','dd']
+	>>>a.extend(b)
+	>>>print a
+	['aa','bb','cc','dd']
+
+	>>> * list.index(elem)
+	        * Searches for the given element from the start of  the list and returns its index
+	        * Throws a ValueError if the element does not appear
+
+	>>>a=[1,2,3,4,5,6]
+	>>>a.index(3)
+	2
+	>>>a.index(99)
+	ValueError : 99 is not in the list
+
+	>>>a=range(10)
+	print a
+	[0,1,2,3,4,5,6,7,8,9]
+	
+
+	>>> * list.remove(elem)
+	        * Searches for the first instance of the given element and removes it.
+	        * Throws ValueError if not present.
+
+	>>> * list.sort()
+	        * Sort the list in place(does not return it)
+
+	>>>a=['ad', 'sd', 'ff', 'tr', 'cd']
+	>>>print a
+	['ad', 'sd', 'ff', 'tr', 'cd']
+
+	>>>a.sort()             //* Sorts according to ordinal values... Eg. ord('C') = 67 and ord('a') = 97. It modifies the original list.
+	>>>print a
+	['ad', 'cd', 'ff', 'sd', 'tr']
+	
+
+	>>>a=['ad', 'sd', 'ff', 'tr', 'cd']
+	>>>a.reverse()
+	>>>print a
+	['cd','tr','ff','sd','ad']
+	
+
+	>>> * list.pop(index)
+	        * Removes and returns the element at the given index
+	        * Returns the rightmost element if index is omitted.
+
+	>>>print a
+	['cd','tr','ff','sd','ad']
+	>>>a.pop(0)
+	'cd'
+	>>>print a
+	['tr','ff','sd','ad']
+	>>>a.pop(-1)
+	'ad'
+	>>>print a
+	['tr','ff','sd']
+	>>>a.pop()
+	'sd'
+	>>>print a
+	['tr','ff']
+
+
+	>>> * List build-up
+
+	>>>a=range(20)
+	>>>print a
+	[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+	>>>e1=[]
+	>>>for var in a:
+		if var%2==2:
+			e1.append(var)
+
+	>>>print e1
+	[0,2,4,6,8,10,12,14,16,18]
+
+
+	>>>dir()                                              // * dir() shows all the objects
+	[''..........................................'']
+	>>>a=[1,2,3,4,5]
+	>>>dir()
+	[''..........................................'','a']
+
+	>>>print a
+	[1,2,3,4,5]
+	>>>print a[2]
+	3
+	>>>del a[2]
+	>>>print a
+	[1,2,4,5]
+	>>>print a[2]
+	4
+	
+	>>>dir()
+	[''..........................................'','a']
+	>>>del a
+	>>>dir()
+	[''..........................................'','a']
+
+	
+
+	>>>b=[1,2,3]
+	b=a
+	>>>del a
+	>>>print b 
+	[1,2,3]
+
+
+	>>>a=['abc', 'xyzz', 'x', 'bb']
+	>>>a.sort()
+	>>>print a
+	['abc', 'xyzz', 'x', 'bb']
+	>>>a.reverse()
+	>>>print a
+	['xyzz','xx', 'bb', 'abc']
+	
+	>>>a=['abc', 'xyzz', 'x', 'bb']
+
+	>>>sorted(a,reverse=True)                      //* It doesn't modifies the original list.      help(sorted) for help about sorted()
+	['xyzz','xx', 'bb', 'abc']
+	>>>print a
+	['abc', 'xyzz', 'x', 'bb']
+
+	>>>a=['abc', 'xyzz', 'x', 'bb']
+
+	>>>sorted(a, key=len)
+	['x', 'bb', 'abc', 'xyzz']
+
+
+	>>>b=['BB', 'zz', 'CC', 'aa']
+	>>>sorted(b)
+	['BB', 'CC', 'aa','zz']
+
+	>>>sorted(b,key=str.lower)   //* str.lower convert all to lower so str.upper is also give the same answer.
+	[ 'aa', 'BB', 'CC','zz']
+
+	>>>a=['ccc', 'aaaz', 'd', 'bb']
+
+	>>> * sort the above list using the last character.
+	>>> def Last(s): return s[-1]
+	
+	>>>sorted(a,key=Last)
+	['bb', 'ccc', 'd', 'bb']
+
+
+
+
+
+					\\ DATA CENTRE THEORY
+
+	** The height of equipment placed in racks is measured in Us,with 1 U being 1.75 inches.
+
+	* Basic units of Electricity
+	> voltage(V)
+	> current(I), and
+	> resistance(r)
+	
+	Voltage is measured in volts.
+	Current is measured in ramps.
+	Resistance is measured in ohms.
+	
+	Volt= unit of electric potential between two points.
+	Product of resistance(ohms) nad current(amperes)
+
+	Electrical power is measured in watts
+	Watts = Unit of power
+	In an electrical system,power(P) is equal to the voltage(volts) multiplied by the current(amp)
+	Watts= volts * amperes
+
+	The AC24-40 (watt) power supply can supply up to ____ Amps at 24 V AC.
+	Ans. 1.66 Amps            // formula used : Watts= volts * amperes or P=V*I
+
+	
+
+	** HVAC
+	> Colling requirements are measured in BTU per hour.
+	> The HVAC manufacturer provides this
+	> A BTU is the amount of heat energy needed to raise the temperature of one pound of water by one degree F.
+	> Heat is energy and is commonlt expresses in :
+		> Joules
+		> BTU
+		> Tons, or
+		> Calories
+	> Common measures of heat output rate for equipment are:
+		> BTU per hour
+		> Tones per day
+		> Joules per second (== Watt)
+
+	Given a Value in	||	Multiply by		||	To Get
+                `````````````````````````````````````````````````````````````````````````````````````````````````````
+	>BTU per hour	||	>0.293		||	>Watts
+	>Watts		||	>3.41		||	>BTU per hours
+	>Tons		||	>3530		||	>Watts
+	>Watts		||	>0.000283		||	>tons		
+	
+	**WAP in Python to get the above details.
+
+	>Loads/Weight
+	 Differents types of loads
+	*Maximum weight that the entire data-center floor can support
+	*Maximum weight that a single tile can support
+	*Maximum point load that a tile can support.
+	*Wrost-point load is a quarter of the weight of the heaviest stand-alone equipment of rack in the data-center.
+
+	> Selecting an existing building for DC
+	* Natural Hazards
+	* Man-made disasters
+	* Local Technical Talent
+	* Utilities such as power & water.
+
+	>Co-Loc Server
+	
+	>Ramp that must support heavy weight are made of poured concrete.
+	*Ramp Slope =>> 1:20
+	*Tiles are generally made of cast aluminium or simila.
+	*Perforated Tiles
+	*Solid tiles
+	*Static Load - The sum of all loads on the tile.
+	*Electrical Wireways/Cable Trays.
+	*Cable Discipline
+	*Prevent vandalism.
+
+	>Cable Requirment Calculation
+	*Each server is connected to two storage device,using two fibre cable(for performance and redudancy).
+	*Each storage device is also connected to the admin network using cat5 cables(for console based storage admin)
+	*Each server has redundant connections to the production network.
+	*Server to console server connection for management.
+	*Cable required?
+	*Server to storage fibre cables=50 ser X 2 storegs devices X 2 cables = 200 cables.
+

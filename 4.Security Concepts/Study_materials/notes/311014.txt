@@ -1,0 +1,130 @@
+                                                                      // DATE : 31-10-2014
+
+
+
+
+
+**input from user :
+	-> before program execution
+		> command line arguments
+
+	-> during program execution
+		> input()- treats the argument passed as python expression
+		  raw_input()
+
+	eg.
+	  #!/usr/bin/python
+	  def main():
+  		print 'Demo: Using input() function'
+		var1= input('using input() now:')
+		print 'Value of var1 is :', var1
+		print 'var1 is of type:', type(var1)
+	  if name.........................
+
+	eg.
+	  #!/usr/bin/python
+	  def main():
+  		print 'Demo: Using input() function'
+		var1= raw_input('using raw_input() now:')
+		print 'Value of var1 is :', var1
+		print 'var1 is of type:', type(var1)
+	  if name.........................
+
+
+** The abs() function :
+	returns the absolute value of a number
+	a= -20.22
+	print a
+	-20.22
+	print abs(a)
+	20.22
+
+
+
+
+**
+	a=abc
+	print a
+	type(a)
+	dir(a)
+	len(dir(a))
+	print a.__class__
+
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Combined Availability - Two node cluster
+
+	> Server 1
+		> No specila high-availabilty feature except for RAID-1 volumes
+		> Regular Backup and 98% uptime
+	> Server 2
+		> Same as server 1
+	> Server 2 is used only 2% of the time when Server 1 is down.
+	> Combined availabilty = 98% + (98% of 2)
+			       = 98 + 1.96 = 99.96%
+
+
+
+
+** Relaibilty :
+
+	> Represents the probability of a component or system not encountering any failures over a time span.
+	> Reliabilty is a measure of "not breaking down,once it is put in use"
+
+
+** Resiliency
+	> Property of a component that allows it to continue with full or partial functionality after one or more faults.
+	> Able to detect and quickly compensate for faults.
+	> Done by utilizing alternate resources of correcting the error.
+	> Example ECC (Memory)
+	> Error Correction Code
+	> If errors are detected,the bad area is taken out of service,and memory addresses are moved to another area that is properly functioning.
+
+** Serviceability
+	> Probabilty of a service being completed within a given time window.
+	> If a system has a serviceabilty of 0.98 for 3 hours,then there is a 98%.
+	  probabilty that the service will be completed within 3 hours.
+
+** Fault Tolerant System
+	> Systems that have redundant hardware components and can operate in the presence of individual component failures.
+
+** High Availabilty Clusters
+	> Clusters consisting of two or more nodes with a number of external interconnections such as shared disks and private heartbeat network.
+	> Managed by special software with a goal of providing uninterrupted service despite node failures.
+
+
+** Private Heartbeat Network
+	> Private network which is shared only by the cluster nodes, and is not accessible from outside the cluster.
+	> Used by cluster nodes in order to monitor each node's status and communicate with each other.
+
+** High-Performance Clusters
+	> Also called parallel computing clusters.
+	> Each cluster has a group of computer, tied together to work at the same time on a problem, not as backups to each other.
+
+** DR(Disaster recovery)
+	> A DR solution requires a remote, mirrored site where site where buisness and mission-critical applications can be started within a reasonable period of time 	  after the destruction of the primary site.
+
+** High Availabilty Metrics - MTBF
+	> Averable time interval(usually in hours) between two consecutive failures of a certain component or system.
+
+** High Availabilty Metrics - MTTR
+	> Average lenght of time required to complete a repair action.
+		Availabilty = MTBF / (MTBF + MTTR)
+		or
+		Availabilty = UPTIME / (UPTIME + DOWNTIME)
+** Different Levels of Availabilty
+
+	> Level 1 - Depend on built-in Hardware Reliabilty
+        	> Also called Base availability
+	        > Achieved with a single system and basic system management practices in place.
+
+	> Level 2 - Data Protection
+		> RAID
+		> RAID Controller
+
+	> Level 2 - FT	 
+
+		> Expensive
+		> SPOF - Single Point Failure
+		> OS Crash

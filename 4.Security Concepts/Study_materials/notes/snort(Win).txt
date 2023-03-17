@@ -1,0 +1,43 @@
+Snort
+
+1 verify if snort is already installed
+2 download the snort binary
+3 download snort rules
+4 install snort (Do not change the default installation path  C\Snort)
+5 install snort dependencies (WinPCap) if not installed already
+
+
+open run as administration
+and go to snort.exe path
+
+
+download rules (snortrules-snapshot-2970.tar.gz) and extract that into c:/snort
+
+start snort : 
+ 	
+c:\snort\bin> snort
+c:\snort\bin > snort -W           { available interfaces for listening }
+
+snort -i 3 -l c:\snort\log -c c:\snort\etc\snort.conf -A console
+
+after that u'll get errors,,do as written and also take backup of snort.conf somewhere..
+
+when u get dynamic_preprocessor error,,then go to c:/snort/lib/dynamic_preprocessor folder through cmd and type dir /b and copy all files names and paste it in snort.conf under dynamic_preprocessor line.
+
+next error is dynamicengine,..and same above step is repeated to troubleshoot this error.
+
+now create dynamic rules folder in snort-->lib-->snort_dynamicrules (dont forget to write directory word before path while editing in notepad)
+
+next error is white_list.create white_list.rules and black_list.rules in c:/snort/rules
+
+
+own rule: 
+1. alert ip any any -> any any ( msg:" ip Packet detected"; sid: 3666664564;)
+ 
+for printing logs on kiwilogger add this to snort.conf : 
+# syslog...................    {it is step-6 ; and aprox. on line no. 543}
+output alert_syslog: host=192.168.73.250:514,LOG_AUTH LOG_ALERT
+
+cmd--> C:\Snort\bin>snort -i 1 -s -l c:\snort\log -c c:\snort\etc\snort.conf
+
+-------------------------------------------The End---------------------------------------

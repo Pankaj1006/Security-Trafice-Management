@@ -1,0 +1,286 @@
+								DATE : 04/11/14
+
+	**sort() and sorted()
+	> The sort() method on a list sorts that list into ascending order.
+	> The sort() method changes the underlying list and returns None.
+	> The sorted() method takes a list and returns a new list with those elements in sorted order.
+	> The original list is not changed.
+	> The sort() method must be called on a list.Does nor work on any enumerable collection.
+	> The sorted() function works on most of the other data types.
+	> The sort() method predates the sorted() fuction,so you will likely see it in older code.
+	> The sort() method does not need to create a new list, hence considered slightly faster.
+
+
+	>>>* Making a string out of the list.
+	
+	>>>a=['a','b','c','d']
+
+	>>> b = ' '
+
+	>>> for var in a:
+		b=b+var
+		print var
+		print b
+	a
+	a
+	b
+	ab
+	c
+	abc
+	d
+	abcd
+	>>>print b
+	abcd
+
+	>>> a=['a','b','c','d']
+
+	>>>print a
+	['a','b','c','d']
+	>>> ':'.join(a)
+	'a:b:c:d'
+	>>>'\n'.join(a)
+	'a\nb\nc\nd'
+	>>>c='\n'.join(a)
+	>>>print c
+	a
+	b
+	c
+	d
+	>>>' '.join(a)
+	'abcd'
+
+
+
+	>>>print b
+	a:b:c:d
+
+	>>>':'.split(b)
+	[':']
+	>>>b.split(':')
+	['a','b','c','d']
+
+
+	>>>* How to process values from one list to another?
+
+	>>>a=['ccc','aaaz','d','bb']
+
+	>>>result = []
+	>>>for .............................................. ()
+
+	>>>range(20)
+	[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+
+	>>>i=0
+	>>>a=range(20)
+
+	>>>while i< len(a):
+	.......	print a[i]
+	.......	i=i+3
+	.......
+	0
+	3
+	6
+	9
+	12
+	15
+	18
+	
+	>>> * The break statement
+
+	>>>* Terminate the current loop and resume execution at the next statement
+	>>>* Example - Given a list of numbers, write a program that will iterate through and print the list elements until it finds a number greater than 99
+
+	>>>a=[1,55,66,99,111,22,11,33]
+	>>>for val in a:
+		if val>99:
+			break
+		print val
+	1
+	55
+	66
+	99
+
+	>>>* Continue
+	>>>* Returns the control to the beginning of the while loop.
+	>>>* Rejects all the remaining statements in the current iteration of the loop
+	>>>* Can be used in both while and for loops.
+	>>>* Example - Give a list of numbers, write a program that will iterate through and print the list
+	>>>* Elements except any no. greater than 99
+
+	>>>a=[1,55,66,99,111,22,11,33]
+	>>>for val in a:
+		if val>99:
+			continue
+		print val
+	1
+	55
+	66
+	99
+	22
+	11
+	33
+
+	>>>* pass
+	>>>* The pass statement is used when a statement is required syntactically but you do not want any command or code to execute.
+	>>>* The pass statement is a null operation: nothing happens when it executes.
+
+
+	>>>a=[1,55,66,99,111,22,11,33]
+	>>>for val in a:
+		if val>99:
+			pass
+		print val
+
+	1
+	55
+	66
+	99
+	22
+	11
+	33
+
+	** Program {infinite loop}
+
+	#!/usr/bin/python -tt
+	import sys
+	
+	def main():
+		while 1:
+			pass
+	if __name__=='__main__':
+		main()
+
+
+	>>>count = 0
+
+	>>>while count < 5:
+		print count,"is less than 5"
+		count=count+1
+	        else:
+		print count,"is not less than 5"
+
+	0 is less than 5
+	1 is less than 5
+	2 is less than 5
+	3 is less than 5
+	4 is less than 5
+	5 is not less than 5
+
+
+
+		** Using lambda
+	>>>square_root = lambda x:math.sqrt(x)
+	>>>square_root(64)
+	8.0
+
+
+	>>>hello_w = lambda var: 'Hello' + var
+	>>>hello_w('Tinku')
+	'Hello Tinku'
+
+	>>>* List comprehension
+	>>>* Compact way to write an expression that expands to a whole list.
+	>>>* Compute a list of their squares.
+	>>>* The syntax is [exp for var in list]
+
+	>>>runs=[1,2,3,4]
+
+	>>>for n in runs:
+		print n*n
+	1
+	4
+	9
+	16
+
+	>>>squares=[n*n for n in runs]
+	>>>print squares
+	[1,4,9,16]
+
+	>>>* Each string is changed to upper case with '!!!' appended.
+
+	>>>strs=['hello','and','goodbye']
+	>>>strs
+	['hello','and','goodbye']
+
+	>>>shouting=[s.upper()+'!!!' for s in str]
+	>>>print shouting
+	['HELLO!!!','AND!!!','GOODBYE!!!']
+	
+
+	>>>* If condition with List Comprehension
+	>>>* Select values <=2
+	>>>nums=[2,8,1,6]
+	>>>small = [n for n in nums if n<=2]
+	>>>print small
+	[2,1]
+	>>>small1=['yo' for n in nums if n<=2]
+	>>>print small1
+	['yo','yo']
+	>>>small1=['yo' if n<=2 else 'yoyo' for n in nums]
+	>>>print small2
+	['yo','yoyo','yo','yoyo']
+
+
+
+					*** DATA CENTRE THEORY***
+
+	* Network modular cabling.
+	* Points of distribution
+		> Is a rack with devices, network switches, terminal servers, and patch panels that together provide the infrastructure required for a 				number of racks filled with servers and storage.
+	* Internet/Network Acess - ISP provides two components
+		> Network Infra
+		> WAN Links
+	*WAN links composed of two aspects:
+		>Transport
+		>Transit
+	    Network transport is the path they carries the data and has a certain maximum bandwidth,while the transit is the actual data.
+	
+	*ISP WAN Links
+		>OC-12 /STM-4  	622.08 Mbits/s
+		>OC-48		2488.32
+		>OC-1		51.84
+		>OC-3		155.52
+		>OC-24 		1244.16
+		>OC-192		9953.28
+		>OC-768		39813.12
+	
+	*SEA-ME-WE-3
+	
+		South East Asia-Middle East-Western Europe      //One of the Network used by which internet is accessable in India.
+	
+	*Network Operation Center
+	
+	>NOC is a dedicated facility staffed with people (Usually at all Hours) who moniter the Availability of all devices and services within the data center 
+	and respond to any Data center problems.
+	>Network monitering gathers real-time data and classifies it into performance issues and outages.
+
+
+
+				**Nagios**      {Network monitoring software,,,,it is only for linux}
+	
+	* Configuration
+		> SELINUX disabled
+		> Install Nagios Server
+		> Install pre-requisites
+			> Requirements
+				> nano
+				> wget
+				> net-tools
+				> httpd
+				> php
+				> gcc
+				> glibc
+				> glibc-common
+				> gd
+				> gd-devel
+				> make 
+				> net-snap
+				> openssl
+				> openssl-devel tar
+
+	* Create and configure nagios user account and group.
+		> Objective - Create the appropriate user and group for the Nagios process to run.
+		> Note - Make sure you are logged in as root.
+		> Create new group named "nagcmd" - for allowing externel commands to be submitted through the web interface.
+		> Add both the nagios user and the apache user to the group "nagcmd".
+		

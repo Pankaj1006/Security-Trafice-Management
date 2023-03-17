@@ -1,0 +1,242 @@
+
+
+								DATE - 09/11/14
+
+	>>>*snort on linux(fedora core 19):
+		> dependency check
+		> Download and install daq (Data Acquisition Library)
+		> Download and install snort
+		> Download extract and configure snort files
+		
+	
+
+
+	>>>* yum install libpcap libpcap-devel pcre-devel libdnet lebdnet-devel flex bison tar gcc tcpdump zlib zlib-devel wget
+	>>> mkdir downloads
+	>>> pwd
+	>>> cd downloads/
+	>>> pwd
+	>>> wget http://192.164.64.1/sw/snort/daq-2.0.....
+	>>> cd /usr/local/src/
+	>>> pwd
+	>>> tar -zxvf /downloads/dag-2.0.2.tar.gz
+	>>> ls
+	>>> get inside dag
+	>>> ls -l
+	>>> ./configure
+	>>> make
+	>>> make install
+	>>> now go to downloads directory
+	>>> wget http://192.168.64.1/sw/snort/snort-2.9.6.0.tar.gz
+	>>> ls -l
+	>>> cd /usr/local/src/
+	>>> tar -zxvf /root/downloads/snort-2.9.6.0.tar.gz
+	>>> ls -l
+	>>> change to snort dir
+	>>> ls -l
+	>>> ./configure --enalble-sourcefire
+	>>> make
+	>>> make install
+	>>> cd /etc                                                                      // copy snort configuration files to /etc/snort
+	>>>pwd
+	>>> mkdir -p snort
+	>>> cd snort
+	>>> cp /usr/local/src/snort-2.9.6.0/etc/* . 
+	>>> ls -l
+	>>> which snort
+	>>> snort -V
+	>>> go to downloads dir
+	>>> pwd
+	>>> wget http://192.168.64.1/sw/Snort/snortrules-snapshot-2941.tar.gz
+	>>> ls -l
+	>>> cd /etc/snort/
+	>>> tar -zxvf /root/downloads/snortrules-snapshot-2941.tar.gz
+	>>> see etc is there or not
+	>>> cd rules/
+	>>> ls -l white*
+	>>> ls -l black*
+	>>> touch white_list.rules
+	>>> touch black_list.rules
+	>>> ls -l white*
+	>>> ls -l balck*
+	>>> cd /usr/local/lib/
+	>>> mkdir snort_dynamicrules
+	>>> useradd snort -u 40000 -d /var/log/snort -s /sbin/nologin -c SNORT_IDS			// add a user and group for snort
+	>>> cat /etc/passwd | grep snort
+	>>> cd /etc/snort   (go to snort)
+	>>> chown -R snort:snort *
+	>>> cp /etc/snort/snort.conf /etc/snort/snort.conf_backup
+	>>> vi snort.conf
+	>>> change line var RULE_PATH /etc/snort/rules      (line 104)
+	>>>  change line var SO_RULE_PATH /etc/snort/so_rules
+	>>>  change line var PREPROC_RULE_PATH /etc/snort/preproc_rules 
+	>>> look for ipvar HOME_NET 192.168.64.0/24 {our network IP}       (line 45)
+	>>> var WHITE_LIST_PATH /etc/snort/rules 
+	>>> var BLACK_LIST_PATH /etc/snort/rules
+	>>> cd /var/log
+	>>> chmod 700 snort
+	>>> chown snort:snort snort
+	>>> cd /usr/local/lib
+	>>> chown -R snort:snort snort*
+	>>> chown -R snort:snort snort_dynamic*
+	>>> chown -R snort:snort pkgconfig
+	>>> chmod -R 700 snort*
+	>>> chmod -R 700 pkgconfig
+	>>> cd /usr/local/bin
+	>>> chown -R snort:snort daq-modules-config
+	>>> chown -R snort:snort u2*
+	>>> chmod -R 700 daq-modules-config
+	>>> chmod 700 u2*
+	>>> cd /etc
+	>>>chown -R snort:snort snort
+	>>>chmod -R 700 snort
+	>>> snort -T -i (interface name) -u snort -g snort -c /etc/snort/snort.conf 
+
+		// after above all is trouble..........shoot that....
+
+	>>> touch snort/rules/         yaha jo bhi rules files missing hai , usko touch karo iss folder mein
+	>>>snort -T -i (interface name) -u snort -g snort -c /etc/snort/snort.conf  		(-c is configuration file)
+	>>>
+	>>>snort -A console -dev -i (interface)//
+	>>>snort -A console -b -d -i p3p1 -u snort -g snort -c /etc/snort/snort.config -l /var/log/snort/
+
+                 >>>b =Log packets in tcpdump formatted files
+	    -d=
+ 	    -i=	
+	    -u=
+	    -g=
+	    -c=
+                      -l=
+	    -A=							
+
+
+
+
+							** After 5.30 pm ** PYTHON **
+
+
+
+	>>> import os
+	>>> dir = '/'
+	>>> filename= os.listdir(dir)
+	>>> print filename
+	>>> for filename in filename:
+	.....	print filename
+	.
+	.
+	.
+	.
+	.
+	.
+
+
+	Program:
+		#!..................
+		import sys
+		import os
+		def List(dir):
+			filename = os.listdir(dir)
+			for i in filename:
+			print 'filename:', i
+			path = os.path.join(dir,filename)
+			print 'Path:', path
+			print 'Absolute Path:', os.path.abspath(path)
+			print ' '
+		def main():
+			List(sys.argv[1])
+		if __name....................................................
+			................
+
+
+
+
+
+	>>>* To check if a file exists
+	>>> import os
+	
+	>>> os.path.exists('/root/cdac/filename')
+	>>>true(if 'filename' exists and false if not exists)
+
+	>>> To create a directory
+
+	>>>  os.path.exists('/root/cdac/tinku')
+	False
+	>>> os.mkdir('/root/cdac/tinku')
+	>>> os.path.exists('/root/cdac/tinku')
+	True
+	
+	>>> os.mkdir('/root/cdac/tinku')
+	ERROR
+
+
+
+
+
+
+
+
+
+	>>> import urllib
+	>>> url = 'http://192.168.64.1/'
+	>>> print url
+	http://192.168.64.1/
+	>>>print type(url)
+	<type 'str'>
+	>>> uf = urllib.urlopen(url)
+	>>> print type(uf)
+	<type 'instance'>
+	>>> dir(uf)
+
+
+	>>> uf.read()                          // it gives all the html coding behind the page.
+	>>> print uf
+	
+	>>>print uf.code
+	200                                      // gives 200 when page is OK
+
+
+
+	>>> info = uf.info()
+	>>> print type(info)
+	<type 'instance'>
+	>>> info.gettype()
+	'text/html'
+	>>> info.getsubtype()
+	'html'
+	>>> url1 = 'http://192.168...../tinku.jpg'
+	>>> uf1 = urllib.urlopne(url1)
+	>>>  info1 = uf1.info()
+	>>> print info1.gettype
+	image/jpeg
+	>>> print info1.subtype
+	jpeg
+
+	>>> import urllib
+
+	>>> uf = urllib.urlopen('http://www.google.com')
+	>>> baseurl =uf.geturl()
+	>>> print baseurl
+	http://www.google.co.in/?gfe_rd=cr.........................................
+
+
+	>>> import urllib			
+	>>> url = 'htp://www.matrium.com/images/wallpapers/matiux-wpy.png'
+	>>> urllib.urlretrieve(url, 'abc.png')
+	>>> import urllib
+	>>> import urlparse
+	>>> uf = urllib.urlopen('http//www.matrux.com')
+	>>> baseurl = uf.geturl()
+	>>> print baseurl
+	>>> url = '/images/matriux_logo.jpg'
+	>>> urlparse.urljoin(baseurl, url)
+	>>> urlparse.urljoin('http:/www.matriux.com/', url)
+	>>> url = 'http://www.matriux.com/images/matriux_logo.jpg'
+	>>> urlparse.urljoin(baseurl, url)
+
+
+
+
+
+
+
+

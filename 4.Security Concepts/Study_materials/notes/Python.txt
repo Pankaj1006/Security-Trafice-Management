@@ -1,0 +1,23 @@
+Python Native Data Types 
+=>>Numbers
+int
+float
+long
+complex
+
+=>>String
+ascii
+Unicode
+
+=>>Lists
+=>>Tuple
+=>>Dictionaries
+=>>Set
+=>>Boolean
+
+type()
+Python built-in function that takes one argument (object) and returns the type of an object
+
+Shebang/Hashbang
+=>>The character sequence consisting of the characters numberb sign and exclamation point i.e. (#!),
+	> it occurs as the first two character on the first line of a text file.
